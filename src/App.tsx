@@ -2,6 +2,8 @@ import { useState, FormEvent } from 'react'
 import reactLogo from './assets/react.svg'
 import itemsJSON from './ProductList.json'
 import './App.css'
+import {GalleryList } from './Components/ProductImage';
+
 
 interface Product{
     id: string;
@@ -20,7 +22,10 @@ function App() {
     return (
         <div className = "App">
 
+    <h1 className= {"title"}> Groceries </h1>
+            <GalleryList/>
         </div>
+        
   )
 }
 
