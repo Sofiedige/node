@@ -3,7 +3,7 @@ import reactLogo from './assets/react.svg'
 import itemsJSON from './ProductList.json'
 import './App.css'
 
-interface Product {
+interface Product{
     id: string;
     name: string;
     price: number;
