@@ -1,5 +1,6 @@
 import { useState, FormEvent } from 'react'
 import reactLogo from './assets/react.svg'
+import itemsJSON from './ProductList.json'
 import './App.css'
 
 function App() {
