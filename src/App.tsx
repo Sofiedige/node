@@ -16,6 +16,7 @@ interface Product{
 
 const items: Product[] = itemsJSON
 
+
 function App() {
   const [count, setCount] = useState(0)
 
@@ -25,7 +26,7 @@ function App() {
     <h1 className= {"title"}> Groceries </h1>
             <GalleryList/>
         </div>
-        
+
   )
 }
 
