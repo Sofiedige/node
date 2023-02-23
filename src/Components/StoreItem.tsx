@@ -7,11 +7,18 @@ interface Product{
     currency: string;
     rebateQuantity: number;
     rebatePercent: number;
+    imageUrl: string;
 }
-
-export function CheckoutItem({id, name, price}:
+ 
+export function CheckoutItem({id, name, price, imageUrl}:
     Product){
     return <Card>
+       <Card.Img
+       variant="top"
+       src={imageUrl}
+       height="200px"
+       style={{objectFit: "cover"}}
+       />
     <Card.Body className ="d-flex flex-column">
         <Card.Title className="d-flex
         justify-content-between align-items-baseline mb-4">

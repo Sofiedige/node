@@ -9,11 +9,8 @@ import {Col, Row} from "react-bootstrap";
 import {CheckoutItem} from "./Components/StoreItem";
 
 
-
-
-
 function App() {
-    return <><h1> Store </h1>
+    return <><h1> Juicy Jamboree </h1>
         <Row lg={3} md={2} xs={1} className="g-3">
             {items.map(item =>(
                     <Col key={item.id}> <CheckoutItem{...item}/> </Col>
