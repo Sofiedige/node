@@ -10,14 +10,23 @@ import {CheckoutItem} from "./Components/StoreItem";
 
 
 function App() {
-    return <><h1> Juicy Jamboree </h1>
+    const[count,setCount]=useState("")
+    return <>
+
+        <h1><img className={"billedestyle"}
+    src={"logo.png"}
+    alt={"logo"}
+        /> </h1>
+
+<input className={"bar"} type="text" placeholder={"Search..."}onChange={e=>setCount(e.target.value)}/>
+
         <Row lg={3} md={2} xs={1} className="g-3">
             {items.map(item =>(
                     <Col key={item.id}> <CheckoutItem{...item}/> </Col>
                 ))}
         </Row>
-    </>
 
+    </>
 }
 
 export default App

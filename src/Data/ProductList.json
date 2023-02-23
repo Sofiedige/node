@@ -17,47 +17,47 @@
     "rebateQuantity": 2,
     "rebatePercent": 25,
     "upsellProductId": "vitamin-c-depot-500-250",
-    "imageUrl": "/public/citron.jpg"
+    "imageUrl": "/appelsin.jpg"
   },
   {
-    "id": "vitamin-c-depot-500-250",
-    "name": "C-vitamin Depot, 500mg, 250 stk",
+    "id": "Watermelon",
+    "name": "Watermelon",
     "price": 175,
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "imageUrl": "/public/citron.jpg"
+    "imageUrl": "/vandmelon.jpg"
   },
   {
-    "id": "fish-oil-1000-120",
-    "name": "Omega 3 fiskeolie, 1000mg, 120 stk",
+    "id": "Grapefruit",
+    "name": "Grapefruit",
     "price": 69,
     "currency": "DKK",
     "rebateQuantity": 5,
     "rebatePercent": 10,
     "upsellProductId": null,
-    "imageUrl": "/public/citron.jpg"
+    "imageUrl": "/grape.jpg"
   },
   {
-    "id": "coffee-grinder",
-    "name": "Kaffekværn",
+    "id": "Grapes",
+    "name": "Grapes",
     "price": 145,
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": "coffee-grinder-pro",
-    "imageUrl": "/public/citron.jpg"
+    "imageUrl": "/vindruer.jpg"
   },
   {
-    "id": "coffee-grinder-pro",
-    "name": "Kaffekværn Præcision",
+    "id": "Apple",
+    "name": "Apple",
     "price": 320,
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "upsellProductId": null,
-    "imageUrl": "/citron.jpg"
+    "imageUrl": "/æble.jpg"
   },
   {
     "id": "toothbrush",
