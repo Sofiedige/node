@@ -8,12 +8,12 @@ type Product = {
     upsellProductId: string | null;
 };
 
-export type BasketItems = Product & {
+export type nick = Product & {
     quantity: number;
     gift: boolean;
 };
 
-const products: Product[] = [
+const productList: Product[] = [
     {
         "id": "vitamin-d-90-100",
         "name": "D-vitamin, 90ug, 100 stk",
@@ -276,3 +276,4 @@ const products: Product[] = [
         "upsellProductId": null
     }
 ]
+
