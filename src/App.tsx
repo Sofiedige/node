@@ -1,38 +1,26 @@
 import { useState, FormEvent } from 'react'
 import reactLogo from './assets/react.svg'
-import itemsJSON from './ProductList.json'
-import {nick} from "./ProductList";
+import itemsJSON from './Data/ProductList.json'
 import './App.css'
 import {GalleryList } from './Components/ProductImage';
+import items from "./Data/ProductList.json"
+import "bootstrap/dist/css/bootstrap.min.css"
+import {Col, Row} from "react-bootstrap";
+import {CheckoutItem} from "./Components/StoreItem";
 
 
-interface Product{
-    id: string;
-    name: string;
-    price: number;
-    currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
-}
 
-const items: Product[] = itemsJSON
 
 
 function App() {
-  const [count, setCount] = useState(0)
-    console.log(items)
-    return (
-        <div className = "App">
-            console.log(items)
-            console.log(products);
-    <h1 className= {"title"}> Groceries </h1>
-            <GalleryList/>
-            console.log(items)
-        </div>
+    return <><h1> Store </h1>
+        <Row lg={3} md={2} xs={1} className="g-3">
+            {items.map(item =>(
+                    <Col key={item.id}> <CheckoutItem{...item}/> </Col>
+                ))}
+        </Row>
+    </>
 
-  )
-    console.log("hi")
-    console.log(items)
 }
 
 export default App
