@@ -11,13 +11,9 @@ interface Product {
     imageUrl: string;
 }
 
-export function CheckoutItem({id, name, price}:
-                                 Product) {
-    const {getItemQuantity, incrementItem, decrementItem, removeItem} = useShoppingCart()
-    const quantity = getItemQuantity(id)
+export function CheckoutItem({id, name, price, imageUrl}: Product){
+    const {incrementItem} = useShoppingCart()
 
-export function CheckoutItem({id, name, price, imageUrl}:
-    Product){
     return <Card>
         <Card.Img
             variant="top"

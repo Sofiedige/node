@@ -1,5 +1,13 @@
+import React, {useState} from 'react';
 
-import { useState } from 'react';
+
+export default function SearchBar() {
+    const [setCount] = useState("")
+    return (
+        <input className={"bar"} type="text" placeholder={"Search"} onChange = {e=>setCount(e.target.value)}/>
+    )
+}
+
 /*
 function FilterableProductTable({ products }) {
     const [filterText, setFilterText] = useState('');

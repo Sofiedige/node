@@ -11,6 +11,7 @@ import {ShoppingCartProvider} from "./context/ShoppingCartContext";
 import Header from "./Components/Header";
 import Items from "./Components/Items";
 import Basket from "./Components/Basket";
+import SearchBar from "./Components/SearchBar";
 
 
 
@@ -19,10 +20,7 @@ function App() {
     return (
         <ShoppingCartProvider>
             <div><Header></Header>
-                <h1><img className={"billedestyle"}
-                         src={"logo.png"}
-                         alt={"logo"}
-                /> </h1>
+            <SearchBar></SearchBar>
                 <div className="row">
                     <Items></Items>
                     <Basket></Basket>
