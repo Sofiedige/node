@@ -2,10 +2,10 @@ import React, {useState} from 'react';
 
 
 export default function SearchBar() {
-    const [setCount] = useState("")
-    return (
-        <input className={"bar"} type="text" placeholder={"Search"} onChange = {e=>setCount(e.target.value)}/>
-    )
+    const [count, setCount] = useState("")
+    return <>
+        <input className={"bar"} type="text" placeholder={"Search..."} onChange={e => setCount(e.target.value)}/>
+    </>
 }
 
 /*
