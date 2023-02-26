@@ -13,17 +13,22 @@ import Items from "./Components/Items";
 import Basket from "./Components/Basket";
 
 
+
+
 function App() {
     return (
         <ShoppingCartProvider>
             <div><Header></Header>
+                <h1><img className={"billedestyle"}
+                         src={"logo.png"}
+                         alt={"logo"}
+                /> </h1>
                 <div className="row">
                     <Items></Items>
                     <Basket></Basket>
                 </div>
 
             </div>
-
 
         </ShoppingCartProvider>)
 }
