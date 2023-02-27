@@ -20,7 +20,7 @@ export default function Basket(){
             {cartItems.reduce((total,cartItem) => {
                 const item = storeItems.find(i=>i.id === cartItem.id)
                 return total + (item?.price || 0) * cartItem.quantity
-            },0)}
+            },0)} DKK
             </div>
         </aside>
 

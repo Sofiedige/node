@@ -25,7 +25,6 @@ function App() {
                     <Items></Items>
                     <Basket></Basket>
                 </div>
-
             </div>
 
         </ShoppingCartProvider>)
