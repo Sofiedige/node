@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
-
+import items from "../Data/ProductList.json"
 
 export default function SearchBar() {
-    const [count, setCount] = useState("")
+    const [inputs, setInputs] = useState("")
     return <>
         <div style={{display: 'flex', justifyContent: 'center'}}>
             <input className={"bar"} text-align={"center"} type="text"
-            placeholder={"Search..."} onChange={e => setCount(e.target.value)}/>
+            placeholder={"Search..."} value={inputs} onChange={e => setInputs(e.target.value)}/>
         </div>
     </>
+    
 }
+
