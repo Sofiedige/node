@@ -20,7 +20,7 @@ export function CheckoutItem({id, name, price, imageUrl}: Product){
             src={imageUrl}
             height="200px"
             style={{objectFit: "cover"}}
-        />
+        /> 
 
     <Card.Body className ="d-flex flex-column">
         <Card.Title className="d-flex

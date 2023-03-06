@@ -1,6 +1,7 @@
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json"
 import {Button, Stack} from "react-bootstrap";
+import React from "react";
 
 
 type CartItemProps = {
@@ -9,7 +10,7 @@ type CartItemProps = {
 }
 
 export function CartItem({id, quantity}: CartItemProps) {
-    const {removeItem, incrementItem,decrementItem} = useShoppingCart()
+    const {removeItem, incrementItem, decrementItem} = useShoppingCart()
     const item = storeItems.find(i => i.id == id)
     if (item == null) return null
 
@@ -27,15 +28,19 @@ export function CartItem({id, quantity}: CartItemProps) {
                     {item.price} DKK
                 </div>
             </div>
-            {item.price*quantity} DKK
+            {item.price * quantity} DKK
             <div>
                 <div
                     className="d-flex align-items-center justify-content-center"
                     style={{gap: ".5rem"}}
                 >
-                    <Button onClick={() => decrementItem(id)}
-                            variant="success"
-                    >-</Button>
+                    {quantity > 1 ? <Button onClick={() => decrementItem(id)}
+                                            variant="success"
+                    >-</Button> : <Button
+                        variant="secondary"
+                    >-</Button>}
+
+
                     <div>
                         <span className="fs-3">{quantity}</span> in cart
                     </div>
