@@ -2,8 +2,8 @@
   display: inline-flex;
   height: 100px;
   width: 300px;
-
 }
+
 
 .title{
   left: 0;
@@ -12,10 +12,7 @@
 }
 
 .bar{
-  width: 80% ;
+  width: 95% ;
   margin: 10px;
 
 }
-/*update ctrl s
-
- */

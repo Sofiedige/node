@@ -11,14 +11,14 @@ interface Product {
     imageUrl: string;
 }
 
-export function CheckoutItem({id, name, price, imageUrl}: Product){
-    const {incrementItem} = useShoppingCart()
+    export function CheckoutItem({id, name, price, imageUrl}: Product){
+        const {incrementItem} = useShoppingCart()
 
     return <Card>
         <Card.Img
             variant="top"
             src={imageUrl}
-            height="200px"
+            height="100px"
             style={{objectFit: "cover"}}
         /> 
 
