@@ -25,10 +25,10 @@ export function CartItem({id, quantity}: CartItemProps) {
                 </div>
 
                 <div className="text-muted" style={{fontSize: ".75rem"}}>
-                    {item.price} DKK
+                    {item.price} kr.
                 </div>
             </div>
-            {item.price * quantity} DKK
+            {item.price * quantity} kr.
             <div>
                 <div
                     className="d-flex align-items-center justify-content-center"

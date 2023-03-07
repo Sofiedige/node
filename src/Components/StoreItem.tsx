@@ -26,7 +26,7 @@ interface Product {
         <Card.Title className="d-flex
         justify-content-between align-items-baseline mb-4">
                 <span className="fs-2">{name}</span>
-                <span className="ms-2 text-muted">{"DKK "}{price}</span>
+                <span className="ms-2 text-muted">{price}{" kr."}</span>
                 <div
                     className="d-flex align-items-center flex-column"
                     style={{gap: ".5rem"}}
