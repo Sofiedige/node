@@ -37,7 +37,7 @@ export default function Billing() {
                     <option value="Denmark">Denmark</option>
                 </select>
 
-                <label>Zip code</label>
+                <label>Zip code *</label>
                 <input
                     type="text"
                     required
