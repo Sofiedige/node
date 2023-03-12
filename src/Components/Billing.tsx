@@ -8,7 +8,7 @@ export default function Billing() {
 
     return (
         <><h2> Enter information </h2>
-            <div className="bill">
+            <form className="bill">
 
                 <label>First name *</label>
                 <input
@@ -23,12 +23,12 @@ export default function Billing() {
 
                 <label>Phone number</label>
                 <input
-                    type="text"
+                    type="number"
                 />
 
                 <label>E-mail *</label>
                 <input
-                    type="text"
+                    type="email"
                     required
                 />
 
@@ -39,7 +39,7 @@ export default function Billing() {
 
                 <label>Zip code *</label>
                 <input
-                    type="text"
+                    type="number"
                     required
                 />
 
@@ -67,14 +67,14 @@ export default function Billing() {
 
                 <label>Company VAT number</label>
                 <input
-                    type="text"
+                    type="number"
                 />
 
                 <div>
                     <button>Continue</button>
 
                 </div>
-            </div>
+            </form>
         </>
 
     )
