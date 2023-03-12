@@ -49,11 +49,31 @@ export default function Billing() {
                     required
                 />
 
+                <label>Address line 1 *</label>
+                <input
+                    type="text"
+                    required
+                />
+
+                <label>Address line 2</label>
+                <input
+                    type="text"
+                />
+
+                <label>Company name</label>
+                <input
+                    type="text"
+                />
+
+                <label>Company VAT number</label>
+                <input
+                    type="text"
+                />
+
                 <div>
                     <button>Continue</button>
 
                 </div>
-
             </div>
         </>
 
