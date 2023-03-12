@@ -43,7 +43,7 @@ export default function Billing() {
                     required
                 />
 
-                <label>City</label>
+                <label>City *</label>
                 <input
                     type="text"
                     required
