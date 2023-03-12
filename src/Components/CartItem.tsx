@@ -40,10 +40,10 @@ export function CartItem({id, quantity}: CartItemProps) {
                         variant="secondary"
                     >-</Button>}
 
-
                     <div>
                         <span className="fs-3">{quantity}</span> in cart
                     </div>
+
                     <Button onClick={() => incrementItem(id)}
                             variant="success"
                     >+</Button>

@@ -11,12 +11,14 @@ import Header from "./Components/Header";
 import Items from "./Components/Items";
 import Basket from "./Components/Basket";
 import SearchBar from "./Components/SearchBar";
+import Billing from "./Components/Billing";
 
 
 
 
 function App() {
     return (
+
         <ShoppingCartProvider>
             <div><Header></Header>
             <SearchBar></SearchBar>
@@ -25,8 +27,12 @@ function App() {
                     <Basket></Basket>
                 </div>
             </div>
+            <Billing></Billing>
 
-        </ShoppingCartProvider>)
+        </ShoppingCartProvider>
+
+
+    )
 }
 
 export default App

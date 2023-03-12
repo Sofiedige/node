@@ -1,9 +1,7 @@
 body {
     font-family: Helvetica, Arial, sans-serif;
 }
-h1,
-h2,
-h3{
+h1,h2,h3{
     margin: 0.5rem 0;
 }
 h1{
@@ -38,6 +36,25 @@ a{
 .row.center{
     align-items: center;
 }
+.bill{
+    margin: 0 auto;
+    font-size: 1.2rem;
+    align-content: center;
+
+}
+
+.bill label{
+    text-align: left;
+    display: block;
+}
+.bill button{
+   //background: #f9e791;
+    background: #187c4c;
+    color: #fff;
+    border: 0;
+}
+
+
 
 
 
