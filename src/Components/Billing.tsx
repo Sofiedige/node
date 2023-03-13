@@ -54,7 +54,6 @@ export default function Billing() {
                 <label>Zip code *</label>
 
                 <div>
-                    <label htmlFor="zip">Zip Code:</label>
                     <input
                         id="zip"
                         maxLength={4}
