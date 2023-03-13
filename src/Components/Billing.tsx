@@ -1,6 +1,8 @@
 import React, {useState} from 'react'
 import {Stack} from "react-bootstrap";
 import {CartItem} from "./CartItem";
+import {Link, Route, Routes} from 'react-router-dom'
+import {Home} from "../Pages/Home"
 
 //checkout
 
@@ -75,8 +77,11 @@ export default function Billing() {
 
                 </div>
             </form>
+            <Link className={"link"}
+                to="../" relative="path">
+                Home
+            </Link>
         </>
-
     )
 }
 
