@@ -1,8 +1,10 @@
 import React from 'react'
-import {Stack} from "react-bootstrap";
+import {Button, Stack} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
+import {Link, Route, Routes} from 'react-router-dom'
+import {Checkout} from "../Pages/Checkout"
 
 
 export default function Basket() {
@@ -44,6 +46,12 @@ export default function Basket() {
                 </p> : <p> No items added in cart</p>}
 
             </div>
+
+
+            <Link to="../Checkout" relative="path">
+                Checkout
+            </Link>
+
         </aside>
 
     )
