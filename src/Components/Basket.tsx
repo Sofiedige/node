@@ -36,7 +36,7 @@ export default function Basket() {
                     <CartItem key={item.id} {...item} />
                 ))}
             </Stack>
-            <div className={"ms-auto fw-bold fs-5"}>
+            <div className={"primaryColor"}>
                 {total> 0 ? <p> Total {" "} {total.toFixed(2)} kr.
                     {!isDiscount ? <p> Need {(300 - total).toFixed(2)} kr. to get 10% discount</p>:
                         <p> You have saved {discount.toFixed(2)} kr!</p>}
@@ -47,4 +47,5 @@ export default function Basket() {
         </aside>
 
     )
+
 }

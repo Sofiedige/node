@@ -60,7 +60,13 @@ a{
     --side-color: #dd622a;
     --closePrimary-color: #73c5a8;
 }
+.primaryColor p {
+    color: #1fa57d;
+}
 
+.numeric {
+    text-align: right;
+}
 
 
 
