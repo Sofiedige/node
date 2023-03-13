@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {InputHTMLAttributes, useState} from 'react'
 import {Stack} from "react-bootstrap";
 import {CartItem} from "./CartItem";
 import {Link, Route, Routes} from 'react-router-dom'
@@ -7,6 +7,20 @@ import {Home} from "../Pages/Home"
 //checkout
 
 export default function Billing() {
+
+    const [zipCode, setZipCode] = useState<string>("");
+
+    var charCodeZero = "0".charCodeAt(0);
+    var charCodeNine = "9".charCodeAt(0);
+
+    const handleZipCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newZipCode = event.target.value;
+        // @ts-ignore
+        // && newZipCode.charAt(newZipCode.length) <= charCodeNine && newZipCode.charAt(newZipCode.length) <= charCodeZero
+        if (newZipCode.length <= 4) {
+            setZipCode(newZipCode);
+        }
+    }
 
     return (
         <><h2> Enter information </h2>
@@ -40,10 +54,19 @@ export default function Billing() {
                 </select>
 
                 <label>Zip code *</label>
-                <input
-                    type="number"
-                    required
-                />
+
+                <div>
+                    <label htmlFor="zip">Zip Code:</label>
+                    <input
+                        id="zip"
+                        maxLength={4}
+                        type="number"
+                        required
+                        value={zipCode}
+                        onChange={handleZipCodeChange}
+                    />
+                    {zipCode.length !== 4 && <p>Please enter a 4-digit zip code.</p>}
+                </div>
 
                 <label>City *</label>
                 <input
