@@ -49,10 +49,19 @@ a{
 }
 .bill button{
    //background: #f9e791;
-    background: #187c4c;
+    background: #1fa57d;
     color: #fff;
     border: 0;
 }
+
+.primaryColor Button{
+    background: #1fa57d;
+    --primary-color: #1fa57d;
+    --side-color: #dd622a;
+    --closePrimary-color: #73c5a8;
+}
+
+
 
 
 

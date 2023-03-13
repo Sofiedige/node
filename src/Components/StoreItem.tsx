@@ -14,7 +14,7 @@ interface Product {
     export function CheckoutItem({id, name, price, imageUrl}: Product){
         const {incrementItem} = useShoppingCart()
 
-    return <Card>
+    return <Card className="primaryColor">
         <Card.Img
             variant="top"
             src={imageUrl}
