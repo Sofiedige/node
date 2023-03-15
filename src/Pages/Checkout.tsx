@@ -9,7 +9,9 @@ export function Checkout(){
     return <ShoppingCartProvider>
         <div>
             <Header></Header>
-            <Billing></Billing>
+            <div className="row">
+             <Billing></Billing>
+            </div>
         </div>
     </ShoppingCartProvider>
 }
