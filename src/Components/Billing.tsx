@@ -12,6 +12,7 @@ export default function Billing() {
     const [zipCode, setZipCode] = useState<number | null>(null);
     const [cityName, setCityName] = useState<String>("");
     const [loading, setLoading] = useState<boolean>(false);
+    const [zipMessage, setZipMessage] = useState<String>("");
 
     const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newZipCode = event.target.value;
@@ -24,20 +25,25 @@ export default function Billing() {
 
                 setLoading(true);
 
-                setTimeout(()=> {
-                        setLoading(false)},2000);
-                try {
 
+                try {
                     const response = await fetch(`https://api.dataforsyningen.dk/postnumre?nr=${newZipCode}`);
                     const json = await response.json();
-                    setCityName(json[0]?.navn || "");
 
-                } catch (error) {
-                    console.error(error);
-                    setCityName("");
-                }
-            }
-               else {
+                    setTimeout(()=> {
+                        setLoading(false);
+                        setCityName(json[0]?.navn || "");
+                    }, 2000);
+
+                    if(JSON.stringify(json) === "[]"){
+                        setZipMessage("Zip code does not exist!")
+                    }else{
+                        setZipMessage("")
+                    }
+
+
+                } catch (error) {}
+            } else {
                 setCityName("");
             }
         }
@@ -45,11 +51,6 @@ export default function Billing() {
 
 
     return (
-
-
-
-
-
         <><h2> Enter information </h2>
 
             <form className="bill">
@@ -92,11 +93,13 @@ export default function Billing() {
                         value={zipCode ?? ''}
                         onChange={handleZipCodeChange}
                     />
-
-                    {zipCode !== null && zipCode.toString().length !== 4 && <p>Please enter a 4-digit zip code.</p>}
                     {loading !== null && loading && <div>Loading..</div>}
+                    {!loading && <p>{zipMessage}</p>}
+
+
 
                 </div>
+
 
                 <label>City *</label>
                 <input
