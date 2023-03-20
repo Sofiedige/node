@@ -47,10 +47,10 @@ export default function Basket() {
 
             </div>
 
-
-            <Link to="../Checkout" relative="path">
+            {total != 0 && <Link to="../Checkout" relative="path">
                 Checkout
-            </Link>
+            </Link>}
+
 
         </aside>
 
