@@ -11,6 +11,7 @@ export default function Billing() {
 
     const [zipCode, setZipCode] = useState<number | null>(null);
     const [cityName, setCityName] = useState<String>("");
+    const [loading, setLoading] = useState<boolean>(false);
 
     const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newZipCode = event.target.value;
@@ -20,15 +21,23 @@ export default function Billing() {
             setZipCode(parsedZipCode);
 
             if (newZipCode.length === 4) {
+
+                setLoading(true);
+
+                setTimeout(()=> {
+                        setLoading(false)},2000);
                 try {
+
                     const response = await fetch(`https://api.dataforsyningen.dk/postnumre?nr=${newZipCode}`);
                     const json = await response.json();
                     setCityName(json[0]?.navn || "");
+
                 } catch (error) {
                     console.error(error);
                     setCityName("");
                 }
-            } else {
+            }
+               else {
                 setCityName("");
             }
         }
@@ -36,6 +45,9 @@ export default function Billing() {
 
 
     return (
+
+
+
 
 
         <><h2> Enter information </h2>
@@ -82,7 +94,7 @@ export default function Billing() {
                     />
 
                     {zipCode !== null && zipCode.toString().length !== 4 && <p>Please enter a 4-digit zip code.</p>}
-
+                    {loading !== null && loading && <div>Loading..</div>}
 
                 </div>
 
@@ -90,7 +102,7 @@ export default function Billing() {
                 <input
                     type="text"
                     required
-                    value={cityName.toString()}
+                    value={ cityName.toString()}
                 />
 
                 <label>Address line 1 *</label>
