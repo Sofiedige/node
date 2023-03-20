@@ -9,22 +9,37 @@ import {Home} from "../Pages/Home"
 
 export default function Billing() {
 
-    const [zipCode, setZipCode] = useState<string>("");
+    const [zipCode, setZipCode] = useState<number | null>(null);
+    const [cityName, setCityName] = useState<String>("");
 
-    var charCodeZero = "0".charCodeAt(0);
-    var charCodeNine = "9".charCodeAt(0);
-
-    const handleZipCodeChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newZipCode = event.target.value;
-        // @ts-ignore
-        // && newZipCode.charAt(newZipCode.length) <= charCodeNine && newZipCode.charAt(newZipCode.length) <= charCodeZero
-        if (newZipCode.length <= 4) {
-            setZipCode(newZipCode);
+        const parsedZipCode = parseInt(newZipCode, 10);
+
+        if ((!isNaN(parsedZipCode) && newZipCode.length <= 4) || newZipCode.length == 0) {
+            setZipCode(parsedZipCode);
+
+            if (newZipCode.length === 4) {
+                try {
+                    const response = await fetch(`https://api.dataforsyningen.dk/postnumre?nr=${newZipCode}`);
+                    const json = await response.json();
+                    setCityName(json[0]?.navn || "");
+                } catch (error) {
+                    console.error(error);
+                    setCityName("");
+                }
+            } else {
+                setCityName("");
+            }
         }
     }
 
+
     return (
+
+
         <><h2> Enter information </h2>
+
             <form className="bill">
 
                 <label>First name *</label>
@@ -62,16 +77,20 @@ export default function Billing() {
                         maxLength={4}
                         type="number"
                         required
-                        value={zipCode}
+                        value={zipCode ?? ''}
                         onChange={handleZipCodeChange}
                     />
-                    {zipCode.length !== 4 && <p>Please enter a 4-digit zip code.</p>}
+
+                    {zipCode !== null && zipCode.toString().length !== 4 && <p>Please enter a 4-digit zip code.</p>}
+
+
                 </div>
 
                 <label>City *</label>
                 <input
                     type="text"
                     required
+                    value={cityName.toString()}
                 />
 
                 <label>Address line 1 *</label>
