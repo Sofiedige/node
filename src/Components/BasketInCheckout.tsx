@@ -1,10 +1,6 @@
-import React, {useEffect, useState} from 'react'
 import {Button, Stack} from "react-bootstrap";
-import {useShoppingCart} from "../context/ShoppingCartContext";
-import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
-import {Link, Route, Routes, useLocation} from 'react-router-dom'
-import {Checkout} from "../Pages/Checkout"
+import {useLocation} from 'react-router-dom'
 import {CartItemInCheckout} from "./CartItemInCheckout";
 
 

@@ -1,6 +1,5 @@
-import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json"
-import {Button, Stack} from "react-bootstrap";
+import {Stack} from "react-bootstrap";
 import React from "react";
 
 

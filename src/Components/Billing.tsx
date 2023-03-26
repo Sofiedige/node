@@ -260,7 +260,7 @@ export default function Billing() {
                                 />
                             </div>
                         )}
-                        <div className="form-group">
+                        <div className="continue-button">
                             <button type="submit">Continue</button>
                         </div>
                     </form>
