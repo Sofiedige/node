@@ -1,17 +1,22 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Button, Stack} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
-import {Link, Route, Routes} from 'react-router-dom'
+import {Link, Route, Routes, useLocation} from 'react-router-dom'
+import {Checkout} from "../Pages/Checkout"
+import {CartItemInCheckout} from "./CartItemInCheckout";
 
 
-export default function Basket() {
-    const {cartItems} = useShoppingCart()
+export default function BasketInCheckout() {
     let isDiscount: boolean = false
     let discount: number= 0
 
-    const total = cartItems.reduce((total, cartItem) => {
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const cartItems = JSON.parse(queryParams.get('cartItems') || '[]');
+
+    const total = cartItems.reduce((total: number, cartItem: { id: string; quantity: number; }) => {
         const item = storeItems.find(i => i.id === cartItem.id)
         total = total + (item?.price || 0) * cartItem.quantity
         isDiscount = false
@@ -28,13 +33,13 @@ export default function Basket() {
 
 
     //tilføj rebatlogik.
-
     return (
         <aside className="block col-1">
             <h2> Cart Items </h2>
-            <Stack gap={3}>
-                {cartItems.map(item => (
-                    <CartItem key={item.id} {...item} />
+
+            <Stack className = "my-cart-items" gap={0}>
+                {cartItems.map((item: JSX.IntrinsicAttributes & { id: string; quantity: number; }) => (
+                    <CartItemInCheckout key={item.id} {...item} />
                 ))}
             </Stack>
             <div className={"primaryColor"}>
@@ -45,14 +50,6 @@ export default function Basket() {
                 </p> : <p> No items added in cart</p>}
 
             </div>
-
-            {total != 0 && <Link to={{
-                pathname: '../Checkout',
-                search: `?cartItems=${JSON.stringify(cartItems)}` }}>
-                Checkout
-            </Link>}
-
-
         </aside>
 
     )

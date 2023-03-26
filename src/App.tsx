@@ -13,7 +13,7 @@ import Basket from "./Components/Basket";
 import SearchBar from "./Components/SearchBar";
 import Billing from "./Components/Billing";
 import {Route, Routes} from 'react-router-dom'
-import {Home} from "./Pages/Home"
+import Home from "./Pages/Home"
 import {Checkout} from "./Pages/Checkout"
 
 

@@ -14,5 +14,27 @@
 .bar{
   width: 95% ;
   margin: 10px;
+}
 
+.form-container {
+  background-color: #c9c696;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-group{
+  padding: 3px;
+}
+
+.my-cart{
+
+}
+
+.my-cart-items{
+  padding-bottom: 14px;
 }
