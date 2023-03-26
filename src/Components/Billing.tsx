@@ -10,30 +10,36 @@ export default function Billing() {
     const [companyName, setCompanyName] = useState("");
     const [companyVatNumber, setCompanyVatNumber] = useState("");
     const [isCompanyNameFilled, setIsCompanyNameFilled] = useState(false);
-
     const handleCompanyNameChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setCompanyName(e.target.value);
         setIsCompanyNameFilled(Boolean(e.target.value));
     };
-
     const handleCompanyVatNumberChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setCompanyVatNumber(e.target.value);
     };
+
+    const [addressLine1, setAddressLine1] = useState("");
+    const [addressLine2, setAddressLine2] = useState("");
+    const handleAddressLine1Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAddressLine1(e.target.value);
+    };
+    const handleAddressLine2Change = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setAddressLine2(e.target.value);
+    };
+
 
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
+    const location = useLocation();
+    const queryParams = new URLSearchParams(location.search);
+    const cartItems = JSON.parse(queryParams.get('cartItems') || '[]');
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault(); // prevent default form submission behavior
         handleMySubmit()
     };
-
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const cartItems = JSON.parse(queryParams.get('cartItems') || '[]');
-
     function handleMySubmit() {
         setIsLoading(true);
         const headers = new Headers();
@@ -56,6 +62,8 @@ export default function Billing() {
             companyName: companyName,
             companyVatNumber: companyVatNumber,
             cartItem: cartItemData,
+            addressLine1: addressLine1,
+            addressLine2: addressLine2
         };
 
         const options: RequestInit = {
@@ -219,6 +227,8 @@ export default function Billing() {
                             <label>Address line 1 *</label>
                             <input
                                 type="text"
+                                value={addressLine1}
+                                onChange={handleAddressLine1Change}
                                 required
                             />
                         </div>
@@ -226,14 +236,17 @@ export default function Billing() {
                             <label>Address line 2</label>
                             <input
                                 type="text"
+                                value={addressLine2}
+                                onChange={handleAddressLine2Change}
                             />
                         </div>
                         <div className="form-group">
                             <label>Company name</label>
                             <input
                                 type="text"
-                                   value={companyName}
-                                onChange={handleCompanyNameChange} />
+                                value={companyName}
+                                onChange={handleCompanyNameChange}
+                            />
                         </div>
 
                         {isCompanyNameFilled && (
