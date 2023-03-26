@@ -7,6 +7,19 @@ import {useLocation} from "react-router-dom";
 
 export default function Billing() {
 
+    const [companyName, setCompanyName] = useState("");
+    const [companyVatNumber, setCompanyVatNumber] = useState("");
+    const [isCompanyNameFilled, setIsCompanyNameFilled] = useState(false);
+
+    const handleCompanyNameChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+        setCompanyName(e.target.value);
+        setIsCompanyNameFilled(Boolean(e.target.value));
+    };
+
+    const handleCompanyVatNumberChange = (e: { target: { value: React.SetStateAction<string>; }; }) => {
+        setCompanyVatNumber(e.target.value);
+    };
+
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -34,13 +47,14 @@ export default function Billing() {
         });
 
         const body = {
-            test: "event",
             zip: zipCode.toString(),
             city: cityName.toString(),
             email: email,
             firstName: firstName,
             sirName: lastName,
             phoneNumber: phoneNumber,
+            companyName: companyName,
+            companyVatNumber: companyVatNumber,
             cartItem: cartItemData,
         };
 
@@ -109,7 +123,6 @@ export default function Billing() {
             setPhoneNumber(newPhoneNumber);
         }
     }
-
 
     return (
         <><BasketInCheckout/>
@@ -219,14 +232,21 @@ export default function Billing() {
                             <label>Company name</label>
                             <input
                                 type="text"
-                            />
+                                   value={companyName}
+                                onChange={handleCompanyNameChange} />
                         </div>
-                        <div className="form-group">
-                            <label>Company VAT number</label>
-                            <input
-                                type="number"
-                            />
-                        </div>
+
+                        {isCompanyNameFilled && (
+                            <div className="form-group">
+                                <label>Company VAT number</label>
+                                <input
+                                    type="text"
+                                    value={companyVatNumber}
+                                    onChange={handleCompanyVatNumberChange}
+                                    required
+                                />
+                            </div>
+                        )}
                         <div className="form-group">
                             <button type="submit">Continue</button>
                         </div>
@@ -236,12 +256,3 @@ export default function Billing() {
         </>
     );
 }
-
-/*
- - zip code, if Denmark, validate against https://api.dataforsyningen.dk/postnumre
-  - city, if Denmark provide automatically from zip code
-  - address line 1 and 2
-  - name
-  - phone, if Denmark, validate as 8 digits
-  - email, validate as valid email address
- */
