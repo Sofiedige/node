@@ -10,6 +10,39 @@ import {CheckoutItem} from "./StoreItem";
 
 export default function Billing() {
 
+    const [firstName, setFirstName] = useState("");
+    const [lastName, setLastName] = useState("");
+    const [email, setEmail] = useState("");
+
+    const handleSubmit = (event: { preventDefault: () => void; }) => {
+        event.preventDefault(); // prevent default form submission behavior
+        handleMySubmit()
+    };
+
+    function handleMySubmit() {
+        const headers = new Headers()
+        headers.append("Content-Type", "application/json")
+
+        const body = {
+            "test": "event",
+            "zip": zipCode.toString(),
+            "city": cityName.toString(),
+            "email": email,
+            "firstName": firstName,
+            "sirName": lastName,
+            "phoneNumber": phoneNumber
+        }
+
+        const options: RequestInit = {
+            method: "POST",
+            headers,
+            mode: "cors",
+            body: JSON.stringify(body),
+        }
+
+        fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => console.log("yes"))
+    }
+
     const [loading, setLoading] = useState<boolean>(false);
 
     const [zipCode, setZipCode] = useState<String>("");
@@ -72,36 +105,41 @@ export default function Billing() {
 
     return (
         <><h2> Enter information </h2>
-
-            <form className="bill">
-
-
+            <form className="bill" onSubmit={handleSubmit}>
                 <Row lg={2} md={2} xs={1} className="g-3">
                     {
                         <><Col>
                             <label>First name *</label>
                             <input
                                 type="text"
-                                required/>
+                                value={firstName}
+                                onChange={(event) => {
+                                    const value = event.target.value;
+                                    if (!/\d+$/.test(value)) {
+                                        setFirstName(value);
+                                    }
+                                }}
+                                required
+                            />
                         </Col><Col>
-
                             <label>Last name *</label>
                             <input
                                 type="text"
+                                value={lastName}
+                                onChange={(event) => {
+                                    const value = event.target.value;
+                                    if (!/\d+$/.test(value)) {
+                                        setLastName(value);
+                                    }
+                                }}
                                 required
                             />
-
                         </Col></>
-
                     }
                 </Row>
-
-
-
-
-
                 <label>Phone number</label>
                 <input
+                    required
                     type="text"
                     minLength={8}
                     maxLength={12}
@@ -111,8 +149,10 @@ export default function Billing() {
 
                 <label>E-mail *</label>
                 <input
-                    type="email"
                     required
+                    type="email"
+                    value={email}
+                    onChange={(event) => setEmail(event.target.value)}
                 />
 
                 <label>Country *</label>
@@ -141,7 +181,7 @@ export default function Billing() {
                 <input
                     type="text"
                     required
-                    value={ cityName.toString()}
+                    value={cityName.toString()}
                 />
 
                 <label>Address line 1 *</label>
@@ -166,9 +206,9 @@ export default function Billing() {
                 />
 
                 <div>
-                    <button>Continue</button>
-
+                <button type="submit">Continue</button>
                 </div>
+
             </form>
         </>
     )
