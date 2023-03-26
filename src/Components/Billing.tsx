@@ -1,30 +1,31 @@
 import React, {InputHTMLAttributes, useState} from 'react'
-import {Stack} from "react-bootstrap";
+import {Col, Row, Stack} from "react-bootstrap";
 import {CartItem} from "./CartItem";
 import {Link, Route, Routes} from 'react-router-dom'
 import {Home} from "../Pages/Home"
+import {CheckoutItem} from "./StoreItem";
 
 
 //checkout
 
 export default function Billing() {
 
-    const [zipCode, setZipCode] = useState<number | null>(null);
-    const [cityName, setCityName] = useState<String>("");
     const [loading, setLoading] = useState<boolean>(false);
-    const [zipMessage, setZipMessage] = useState<String>("");
 
+    const [zipCode, setZipCode] = useState<String>("");
+    const [cityName, setCityName] = useState<String>("");
+    const [zipMessage, setZipMessage] = useState<String>("");
     const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newZipCode = event.target.value;
-        const parsedZipCode = parseInt(newZipCode, 10);
 
-        if ((!isNaN(parsedZipCode) && newZipCode.length <= 4) || newZipCode.length == 0) {
-            setZipCode(parsedZipCode);
+        if(newZipCode.length == 0){
+            setZipCode("")
+
+        }else if (!isNaN(Number(newZipCode)) && newZipCode.length <= 4) {
+            setZipCode(newZipCode);
 
             if (newZipCode.length === 4) {
-
                 setLoading(true);
-
 
                 try {
                     const response = await fetch(`https://api.dataforsyningen.dk/postnumre?nr=${newZipCode}`);
@@ -45,7 +46,26 @@ export default function Billing() {
                 } catch (error) {}
             } else {
                 setCityName("");
+                setZipMessage("")
             }
+        }
+    }
+
+    const [phoneNumber, setPhoneNumber] = useState<String>("");
+
+    function isValidPhoneNumber(phoneNumber: string): boolean {
+        const regex = /^(\+|\d)[0-9]*$/;
+        return regex.test(phoneNumber);
+    }
+
+    const handlePhoneNumberChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
+        const newPhoneNumber = event.target.value;
+
+        if(newPhoneNumber.length == 0){
+            setPhoneNumber("")
+
+        }else if (isValidPhoneNumber(newPhoneNumber)){
+            setPhoneNumber(newPhoneNumber);
         }
     }
 
@@ -55,20 +75,38 @@ export default function Billing() {
 
             <form className="bill">
 
-                <label>First name *</label>
-                <input
-                    type="text"
-                    required
-                />
-                <label>Last name *</label>
-                <input
-                    type="text"
-                    required
-                />
+
+                <Row lg={2} md={2} xs={1} className="g-3">
+                    {
+                        <><Col>
+                            <label>First name *</label>
+                            <input
+                                type="text"
+                                required/>
+                        </Col><Col>
+
+                            <label>Last name *</label>
+                            <input
+                                type="text"
+                                required
+                            />
+
+                        </Col></>
+
+                    }
+                </Row>
+
+
+
+
 
                 <label>Phone number</label>
                 <input
-                    type="number"
+                    type="text"
+                    minLength={8}
+                    maxLength={12}
+                    value={phoneNumber.toString()}
+                    onChange={handlePhoneNumberChange}
                 />
 
                 <label>E-mail *</label>
@@ -88,15 +126,13 @@ export default function Billing() {
                     <input
                         id="zip"
                         maxLength={4}
-                        type="number"
+                        type="text"
                         required
-                        value={zipCode ?? ''}
+                        value={zipCode.toString()}
                         onChange={handleZipCodeChange}
                     />
                     {loading !== null && loading && <div>Loading..</div>}
                     {!loading && <p>{zipMessage}</p>}
-
-
 
                 </div>
 
