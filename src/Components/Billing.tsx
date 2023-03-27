@@ -261,6 +261,10 @@ export default function Billing() {
                                 />
                             </div>
                         )}
+                        <div className="form-group">
+                            <label>Write comment here</label>
+                            <textarea name="comments" id="comments"></textarea>
+                        </div>
 
                         <div style={{
                             display: 'flex',
