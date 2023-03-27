@@ -12,7 +12,6 @@ export function navigate(event: { preventDefault: () => void; }, newPage: string
 
 export default function App() {
     const [myPage, setPage] = useState("home");
-    const [navigating, setNavigating] = useState(false);
 
     useEffect(() => {
         function popstateHandler() {
@@ -28,10 +27,6 @@ export default function App() {
             window.removeEventListener("popstate", popstateHandler)
         }
     }, []);
-
-    useEffect(() => {
-        setNavigating(true);
-    }, [myPage]);
 
     const homeClasses = `page ${myPage === "home" ? 'navigated' : 'navigating'}`;
     const checkoutClasses = `page ${myPage === "checkout" ? 'navigated' : 'navigating'}`;

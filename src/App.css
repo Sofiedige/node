@@ -179,3 +179,44 @@
   border-radius: 5px;
   box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
+
+.product-card {
+  border: none;
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.product-card__image {
+  object-fit: cover;
+}
+
+.product-card__name {
+  font-size: 1.2rem;
+}
+
+.product-card__price {
+  font-size: 1.2rem;
+  color: #6c757d;
+}
+
+.product-card__button {
+  width: 100%;
+  align-self: flex-start;
+  padding: 0.5rem 1.5rem;
+  font-size: 1rem;
+  font-weight: bold;
+  margin-top: auto;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out !important;
+}
+
+
+.product-card__button:hover {
+  transform: scale(1.05);
+}
+
+.app {
+  overflow-x: hidden;
+}
+
