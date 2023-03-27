@@ -72,21 +72,24 @@ export default function Basket() {
             </div>
 
 
-            <Link
-                to={{
-                    pathname: '../Checkout',
-                    search: `?cartItems=${JSON.stringify(cartItems)}`,
-                }}
-                className={`checkout-button ${hover ? 'hover' : ''}`}
-                onMouseEnter={handleMouseEnter}
-                onMouseLeave={handleMouseLeave}
-            >
-                Checkout
-            </Link>
+
+            {total > 0 &&
+                <Link
+                    to={{
+                        pathname: '../Checkout',
+                        search: `?cartItems=${JSON.stringify(cartItems)}`,
+                    }}
+                    className={`checkout-button ${hover ? 'hover' : ''}`}
+                    onMouseEnter={handleMouseEnter}
+                    onMouseLeave={handleMouseLeave}
+                >
+                    Checkout
+                </Link>
+            }
 
 
         </aside>
 
-    )
+    );
 
 }
