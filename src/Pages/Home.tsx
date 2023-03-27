@@ -34,7 +34,7 @@ export default function Home() {
     const pageClasses = `page ${navigating ? 'navigating' : 'navigated'}`;
 
     return (
-        page === "home" &&
+
         <ShoppingCartProvider>
             <div>
                 <Header/>
@@ -45,4 +45,6 @@ export default function Home() {
             </div>
         </ShoppingCartProvider>
     );
+
+
 }

@@ -2,10 +2,10 @@ import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import {Container} from "react-bootstrap";
 import {Route, Routes} from 'react-router-dom'
-import Home from "./Pages/Home"
+import Home from './Pages/Home';
 import {Checkout} from "./Pages/Checkout"
 
-function App() {
+export default function App() {
     return (
         <Container>
             <Routes>
@@ -13,8 +13,5 @@ function App() {
                 <Route path = "/Checkout" element={<Checkout/>} />
             </Routes>
         </Container>
-
     )
 }
-
-export default App
