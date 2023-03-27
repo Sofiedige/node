@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import {Button, Stack} from "react-bootstrap";
+import {Stack} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
-import {Link, Route, Routes} from 'react-router-dom'
+import {navigate} from "../App";
 
 
 export default function Basket() {
@@ -68,6 +68,7 @@ export default function Basket() {
             {total > 0 && (
                 <button
                     className={`checkout-button ${hover ? 'hover' : ''}`}
+                    onClick={(event) => navigate(event, "checkout")}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >

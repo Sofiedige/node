@@ -1,4 +1,5 @@
 import {createContext, ReactNode, useContext, useState} from "react";
+import {navigate} from "../App";
 
 type ShoppingCartProviderProps = {
     children: ReactNode;

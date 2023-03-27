@@ -24,7 +24,9 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
                 </div>
 
             </Card.Title>
-            <Button className="add-to-cart-button" onClick={() => incrementItem(id)}
+            <Button className="add-to-cart-button" onClick={
+                () => incrementItem(id)
+            }
                     variant="success"
             >Add to cart</Button>
         </Card.Body>
