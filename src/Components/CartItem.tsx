@@ -1,30 +1,50 @@
 import { useShoppingCart } from "../context/ShoppingCartContext";
 import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import storeItems from "../Data/ProductList.json";
+import {Product} from "./Items";
 
 type CartItemProps = {
     id: string;
     quantity: number;
 };
 
+
 export function CartItem({ id, quantity }: CartItemProps) {
     const { removeItem, incrementItem, decrementItem } = useShoppingCart();
-    const item = storeItems.find((i) => i.id === id);
-    if (item == null) return null;
-
+    const [productList, setProductList] = useState<Product[]>([]);
     const [isVisible, setIsVisible] = useState(false);
-    const itemImageUrl = `https://raw.githubusercontent.com/Sofiedige/node/main/public${item.imageUrl}`;
 
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
+    useEffect(() => {
+        async function fetchProductList() {
+            try {
+                const response = await fetch(
+                    "https://raw.githubusercontent.com/Sofiedige/node/main/src/Data/ProductList.json"
+                );
+                const data = await response.json();
+                setProductList(data);
+            } catch (error) {
+                console.error(error);
+            }
+        }
+        fetchProductList();
+    }, []);
+
+    const item = productList.find((i: Product) => i.id === id);
+    if (item == null) return null;
+
     return (
         <div className={`cart-item ${isVisible ? "slide-in" : ""}`}>
             <div className="me-auto">
                 <div>
-                    <img className = "itemPics" src={itemImageUrl} alt={item.name} width="50" height="40"/>
+                    <img className = "itemPics"
+                         src = {`https://raw.githubusercontent.com/Sofiedige/node/main/public${item.imageUrl}`}
+                         alt={item.name} width="50" height="40"
+                    />
+
                     {item.name}{" "}
                     <span className="text-muted" style={{ fontSize: ".65rem" }}>
                         {item.price} kr.
