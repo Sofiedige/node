@@ -1,6 +1,6 @@
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json"
-import {Button, Stack} from "react-bootstrap";
+import {Button} from "react-bootstrap";
 import React, {useEffect, useState} from "react";
 
 type CartItemProps = {
@@ -57,5 +57,4 @@ export function CartItem({id, quantity}: CartItemProps) {
             </div>
         </div>
     );
-
 }

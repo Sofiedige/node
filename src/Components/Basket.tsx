@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Button, Stack} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
@@ -26,6 +26,16 @@ export default function Basket() {
         return total
     }, 0)
 
+    const [hover, setHover] = useState(false);
+
+    const handleMouseEnter = () => {
+        setHover(true);
+    };
+
+    const handleMouseLeave = () => {
+        setHover(false);
+    };
+
 
     //tilføj rebatlogik.
 
@@ -37,20 +47,42 @@ export default function Basket() {
                     <CartItem key={item.id} {...item} />
                 ))}
             </Stack>
-            <div className={"primaryColor"}>
-                {total> 0 ? <p> Total {" "} {total.toFixed(2)} kr.
-                    {!isDiscount ? <p> Need {(300 - total).toFixed(2)} kr. to get 10% discount</p>:
-                        <p> You have saved {discount.toFixed(2)} kr!</p>}
+            <div>
+                {total > 0 ? (
+                    <p>
+                        Total {total.toFixed(2)} kr.
+                        {!isDiscount ? (
+                            <p>
+                                Need {(300 - total).toFixed(2)} kr. to get 10% discount
+                            </p>
+                        ) : (
+                            <p>
+                                <div style={{ color: 'green' }}>
+                                    You have saved {discount.toFixed(2)} kr!
+                                </div>
+                            </p>
 
-                </p> : <p> No items added in cart</p>}
 
+                        )}
+
+                    </p>
+                ) : (
+                    <p>No items added in cart</p>
+                )}
             </div>
 
-            {total != 0 && <Link to={{
-                pathname: '../Checkout',
-                search: `?cartItems=${JSON.stringify(cartItems)}` }}>
+
+            <Link
+                to={{
+                    pathname: '../Checkout',
+                    search: `?cartItems=${JSON.stringify(cartItems)}`,
+                }}
+                className={`checkout-button ${hover ? 'hover' : ''}`}
+                onMouseEnter={handleMouseEnter}
+                onMouseLeave={handleMouseLeave}
+            >
                 Checkout
-            </Link>}
+            </Link>
 
 
         </aside>

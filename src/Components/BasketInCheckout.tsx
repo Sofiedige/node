@@ -2,6 +2,7 @@ import {Button, Stack} from "react-bootstrap";
 import storeItems from "../Data/ProductList.json"
 import {useLocation} from 'react-router-dom'
 import {CartItemInCheckout} from "./CartItemInCheckout";
+import React from "react";
 
 
 export default function BasketInCheckout() {
@@ -38,13 +39,28 @@ export default function BasketInCheckout() {
                     <CartItemInCheckout key={item.id} {...item} />
                 ))}
             </Stack>
-            <div className={"primaryColor"}>
-                {total> 0 ? <p> Total {" "} {total.toFixed(2)} kr.
-                    {!isDiscount ? <p> Need {(300 - total).toFixed(2)} kr. to get 10% discount</p>:
-                        <p> You have saved {discount.toFixed(2)} kr!</p>}
+            <div>
+                {total > 0 ? (
+                    <p>
+                        Total {total.toFixed(2)} kr.
+                        {!isDiscount ? (
+                            <p>
+                                Need {(300 - total).toFixed(2)} kr. to get 10% discount
+                            </p>
+                        ) : (
+                            <p>
+                                <div style={{ color: 'green' }}>
+                                    You have saved {discount.toFixed(2)} kr!
+                                </div>
+                            </p>
 
-                </p> : <p> No items added in cart</p>}
 
+                        )}
+
+                    </p>
+                ) : (
+                    <p>No items added in cart</p>
+                )}
             </div>
         </aside>
 

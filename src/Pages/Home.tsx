@@ -33,8 +33,6 @@ export default function Home() {
 
     const pageClasses = `page ${navigating ? 'navigating' : 'navigated'}`;
 
-
-
     return (
         page === "home" &&
         <ShoppingCartProvider>
