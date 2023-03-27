@@ -1,7 +1,7 @@
 .billedestyle{
   display: inline-flex;
-  height: 100px;
-  width: 300px;
+  height: 200px;
+  width: 400px;
 }
 
 
@@ -14,5 +14,107 @@
 .bar{
   width: 95% ;
   margin: 10px;
+}
+.checkout-container {
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
 
+.form-container {
+  background-color: #dad6ca;
+  padding: 20px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  margin: 15px;
+}
+
+.form-group{
+  padding: 2px;
+  background-color: #e0dcd0;
+  margin: 5px;
+}
+
+.my-cart{
+
+}
+
+.my-cart-items{
+  padding-bottom: 14px;
+
+}
+
+.continue-button{
+  border-radius: 10px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+}
+
+.add-to-cart-button{
+  /* set the button size and other styles */
+  font-size: 16px;
+  padding: 10px 20px;
+  border: none;
+  background-color: blue;
+  color: white;
+  /* set the transition duration and easing */
+  transition: transform 0.2s ease-in-out;
+}
+.add-to-cart-button:hover{
+  /* set the button scale and other styles */
+  transform: scale(1.1);
+  background-color: red;
+  /* add additional animation using keyframes */
+  animation: pulse 0.5s ease-in-out;
+}
+@keyframes pulse {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.1);
+  }
+}
+
+
+
+.page{
+  transition: opacity 0.4s ease-in;
+}
+
+.page.navigating{
+  opacity: 0;
+}
+
+.page.navigated{
+  opacity: 1;
+}
+
+.cart-item {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+}
+
+.cart-item.slide-in {
+  animation-name: slide-in;
+  animation-duration: 0.5s;
+  animation-fill-mode: forwards;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-50px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }

@@ -59,6 +59,8 @@ a{
 input[type=checkbox] {
     margin-right: 18px;
     transform: scale(1.5);
+    width: 15px;
+    height: 15px;
 }
 
 

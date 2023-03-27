@@ -1,14 +1,25 @@
-import React, {useState} from 'react';
-import items from "../Data/ProductList.json"
+import React from 'react';
 
-export default function SearchBar() {
-    const [inputs, setInputs] = useState("")
-    return <>
-        <div style={{display: 'flex', justifyContent: 'center'}}>
-            <input className={"bar"} text-align={"center"} type="text"
-            placeholder={"Search..."} value={inputs} onChange={e => setInputs(e.target.value)}/>
+type SearchBarProps = {
+    setInputs: React.Dispatch<React.SetStateAction<string>>;
+};
+
+export default function SearchBar(props: SearchBarProps) {
+    const { setInputs } = props;
+
+    const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
+        setInputs(e.target.value);
+    };
+
+    return (
+        <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <input
+                className={'bar'}
+                text-align={'center'}
+                type='text'
+                placeholder={'Search...'}
+                onChange={handleSearch}
+            />
         </div>
-    </>
-    
+    );
 }
-
