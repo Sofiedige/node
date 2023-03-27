@@ -1,44 +1,49 @@
 import './App.css'
 import "bootstrap/dist/css/bootstrap.min.css"
 import Home from './Pages/Home';
-import React, {useEffect, useState} from "react";
-import {Checkout} from "./Pages/Checkout";
+import React, { useEffect, useState } from "react";
+import { Checkout } from "./Pages/Checkout";
 
-
-export function navigate(event: { preventDefault: () => void; }, newPage: string){
+export function navigate(event: { preventDefault: () => void; }, newPage: string) {
     event.preventDefault(); // prevent standard behavior
     history.pushState({}, "", `?page=${newPage}`);
-    dispatchEvent(new PopStateEvent("popstate"));
+    window.dispatchEvent(new PopStateEvent("popstate"));
 }
 
 export default function App() {
-    const [myPage, setPage] = useState("home")
+    const [myPage, setPage] = useState("home");
+    const [navigating, setNavigating] = useState(false);
+
     useEffect(() => {
-        function popstateHandler (){
+        function popstateHandler() {
             const url = new URLSearchParams(window.location.search)
             const urlPage = url.get("page")
             setPage(urlPage || "home")
         }
-        addEventListener("popstate", popstateHandler)
+
+        window.addEventListener("popstate", popstateHandler)
         popstateHandler()
 
         return () => {
-            removeEventListener("popstate", popstateHandler)
+            window.removeEventListener("popstate", popstateHandler)
         }
     }, []);
-    const [navigating, setNavigating] = useState(true);
 
     useEffect(() => {
-        setNavigating(false);
-    }, [navigating]);
+        setNavigating(true);
+    }, [myPage]);
 
-
-    const pageClasses = `page ${navigating ? 'navigating' : 'navigated'}`;
+    const homeClasses = `page ${myPage === "home" ? 'navigated' : 'navigating'}`;
+    const checkoutClasses = `page ${myPage === "checkout" ? 'navigated' : 'navigating'}`;
 
     return (
-        <div className="App">
-            {(myPage === "home" && <Home/>)}
-            {(myPage === "checkout" && <Checkout/>)}
+        <div className="app">
+            <div className={homeClasses}>
+                {myPage === "home" && <Home />}
+            </div>
+            <div className={checkoutClasses}>
+                {myPage === "checkout" && <Checkout />}
+            </div>
         </div>
     )
 }
