@@ -27,7 +27,6 @@ export default function Billing() {
         setAddressLine2(e.target.value);
     };
 
-
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
@@ -99,7 +98,7 @@ export default function Billing() {
                     setTimeout(() => {
                         setLoading(false);
                         setCityName(json[0]?.navn || "");
-                    }, 2000);
+                    }, 1000);
 
                     if (JSON.stringify(json) === "[]") {
                         setZipMessage("Zip code does not exist!")
@@ -220,7 +219,7 @@ export default function Billing() {
                             <input
                                 type="text"
                                 required
-                                value={cityName.toString()}
+                                defaultValue={cityName.toString()}
                             />
                         </div>
                         <div className="form-group">

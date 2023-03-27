@@ -34,7 +34,7 @@ interface Product {
                 </div>
 
             </Card.Title>
-            <Button onClick={() => incrementItem(id)}
+            <Button className = "add-to-cart-button" onClick={() => incrementItem(id)}
                     variant="success"
             >Add to cart</Button>
         </Card.Body>
