@@ -18,10 +18,10 @@ export default function Billing() {
     const handleZipCodeChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newZipCode = event.target.value;
 
-        if(newZipCode.length == 0){
+        if (newZipCode.length == 0) {
             setZipCode("")
 
-        }else if (!isNaN(Number(newZipCode)) && newZipCode.length <= 4) {
+        } else if (!isNaN(Number(newZipCode)) && newZipCode.length <= 4) {
             setZipCode(newZipCode);
 
             if (newZipCode.length === 4) {
@@ -31,19 +31,20 @@ export default function Billing() {
                     const response = await fetch(`https://api.dataforsyningen.dk/postnumre?nr=${newZipCode}`);
                     const json = await response.json();
 
-                    setTimeout(()=> {
+                    setTimeout(() => {
                         setLoading(false);
                         setCityName(json[0]?.navn || "");
                     }, 2000);
 
-                    if(JSON.stringify(json) === "[]"){
+                    if (JSON.stringify(json) === "[]") {
                         setZipMessage("Zip code does not exist!")
-                    }else{
+                    } else {
                         setZipMessage("")
                     }
 
 
-                } catch (error) {}
+                } catch (error) {
+                }
             } else {
                 setCityName("");
                 setZipMessage("")
@@ -61,10 +62,10 @@ export default function Billing() {
     const handlePhoneNumberChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newPhoneNumber = event.target.value;
 
-        if(newPhoneNumber.length == 0){
+        if (newPhoneNumber.length == 0) {
             setPhoneNumber("")
 
-        }else if (isValidPhoneNumber(newPhoneNumber)){
+        } else if (isValidPhoneNumber(newPhoneNumber)) {
             setPhoneNumber(newPhoneNumber);
         }
     }
@@ -95,9 +96,6 @@ export default function Billing() {
 
                     }
                 </Row>
-
-
-
 
 
                 <label>Phone number</label>
@@ -141,7 +139,7 @@ export default function Billing() {
                 <input
                     type="text"
                     required
-                    value={ cityName.toString()}
+                    value={cityName.toString()}
                 />
 
                 <label>Address line 1 *</label>
@@ -166,6 +164,39 @@ export default function Billing() {
                 />
 
                 <div>
+                    <Col>
+
+                    </Col>
+
+
+                </div>
+
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'row',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
+                    <div>
+                        <input type="checkbox" id="terms"/>
+                    </div>
+                    <div style={{flex: 1}}>
+                        <label htmlFor="terms"> Terms and conditions</label>
+                    </div>
+                </div>
+                <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                }}>
+                    <div>
+                        <input type="checkbox" id="marketing" />
+                    </div>
+                    <div style={{flex: 1}}>
+                        <label htmlFor="marketing"> I accept to receive marketing emails</label>
+                    </div>
+                </div>
+                <div>
                     <button>Continue</button>
 
                 </div>
@@ -175,10 +206,10 @@ export default function Billing() {
 }
 
 /*
- - zip code, if Denmark, validate against https://api.dataforsyningen.dk/postnumre
-  - city, if Denmark provide automatically from zip code
-  - address line 1 and 2
-  - name
-  - phone, if Denmark, validate as 8 digits
-  - email, validate as valid email address
- */
+- zip code, if Denmark, validate against https://api.dataforsyningen.dk/postnumre
+- city, if Denmark provide automatically from zip code
+- address line 1 and 2
+- name
+- phone, if Denmark, validate as 8 digits
+- email, validate as valid email address
+*/
