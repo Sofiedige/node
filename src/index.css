@@ -56,6 +56,26 @@ a{
     border: 0;
 }
 
+input[type=checkbox] {
+    margin-right: 18px;
+    transform: scale(1.5);
+    width: 15px;
+    height: 15px;
+}
+
+
+input[type=checkbox]:checked::before {
+    content: "\2713";
+    display: block;
+    font-size: 12px;
+    text-align: center;
+    color: white;
+    width: 15px;
+    height: 15px;
+    background-color: #1fa57d;
+    border-radius: 2px;
+}
+
 .primaryColor Button{
     background: #1fa57d;
     --primary-color: #1fa57d;

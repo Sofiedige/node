@@ -39,6 +39,7 @@ export default function Billing() {
         event.preventDefault(); // prevent default form submission behavior
         handleMySubmit()
     };
+
     function handleMySubmit() {
         setIsLoading(true);
         const headers = new Headers();
@@ -105,7 +106,8 @@ export default function Billing() {
                     } else {
                         setZipMessage("")
                     }
-                } catch (error) {}
+                } catch (error) {
+                }
             } else {
                 setCityName("");
                 setZipMessage("")
@@ -259,6 +261,38 @@ export default function Billing() {
                                 />
                             </div>
                         )}
+                        <div className="form-group">
+                            <label>Write comment here</label>
+                            <textarea name="comments" id="comments"></textarea>
+                        </div>
+
+                        <div style={{
+                            display: 'flex',
+                            flexDirection: 'row',
+                            alignItems: 'center',
+                            justifyContent: 'space-between'
+                        }}>
+                            <div>
+                                <input type="checkbox" id="terms"/>
+                            </div>
+                            <div style={{flex: 1}}>
+                                <label htmlFor="terms"> Terms and conditions</label>
+                            </div>
+                        </div>
+
+                        <div style={{
+                            display: 'flex',
+                            alignItems: 'center',
+                            justifyContent: 'space-between'
+                        }}>
+                            <div>
+                                <input type="checkbox" id="marketing"/>
+                            </div>
+                            <div style={{flex: 1}}>
+                                <label htmlFor="marketing"> I accept to receive marketing emails</label>
+                            </div>
+                        </div>
+
                         <div className="continue-button">
                             <button type="submit">Continue</button>
                         </div>
