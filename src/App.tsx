@@ -7,11 +7,6 @@ import {Checkout} from "./Pages/Checkout"
 
 export default function App() {
     return (
-        <Container>
-            <Routes>
-                <Route path = "/" element={<Home/>} />
-                <Route path = "/Checkout" element={<Checkout/>} />
-            </Routes>
-        </Container>
+        <Home/>
     )
 }

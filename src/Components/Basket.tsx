@@ -9,7 +9,7 @@ import {Link, Route, Routes} from 'react-router-dom'
 export default function Basket() {
     const {cartItems} = useShoppingCart()
     let isDiscount: boolean = false
-    let discount: number= 0
+    let discount: number = 0
 
     const total = cartItems.reduce((total, cartItem) => {
         const item = storeItems.find(i => i.id === cartItem.id)
@@ -36,9 +36,6 @@ export default function Basket() {
         setHover(false);
     };
 
-
-    //tilføj rebatlogik.
-
     return (
         <aside className="block col-1">
             <h2> Cart Items </h2>
@@ -47,7 +44,7 @@ export default function Basket() {
                     <CartItem key={item.id} {...item} />
                 ))}
             </Stack>
-            <div>
+            <div className="total-padding">
                 {total > 0 ? (
                     <p>
                         Total {total.toFixed(2)} kr.
@@ -57,39 +54,26 @@ export default function Basket() {
                             </p>
                         ) : (
                             <p>
-                                <div style={{ color: 'green' }}>
+                                <div style={{color: 'green'}}>
                                     You have saved {discount.toFixed(2)} kr!
                                 </div>
                             </p>
-
-
                         )}
-
                     </p>
                 ) : (
                     <p>No items added in cart</p>
                 )}
             </div>
 
-
-
-            {total > 0 &&
-                <Link
-                    to={{
-                        pathname: '../Checkout',
-                        search: `?cartItems=${JSON.stringify(cartItems)}`,
-                    }}
+            {total > 0 && (
+                <button
                     className={`checkout-button ${hover ? 'hover' : ''}`}
                     onMouseEnter={handleMouseEnter}
                     onMouseLeave={handleMouseLeave}
                 >
                     Checkout
-                </Link>
-            }
-
-
+                </button>
+            )}
         </aside>
-
     );
-
 }

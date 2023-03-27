@@ -4,7 +4,6 @@
   width: 300px;
 }
 
-
 .title{
   left: 0;
   top: 100%;
@@ -56,7 +55,7 @@
 
 }
 
-.add-to-cart-button{
+.add-to-cart-button {
   /* set the button size and other styles */
   font-size: 16px;
   padding: 10px 20px;
@@ -66,13 +65,22 @@
   /* set the transition duration and easing */
   transition: transform 0.2s ease-in-out;
 }
-.add-to-cart-button:hover{
+
+.add-to-cart-button:hover {
   /* set the button scale and other styles */
   transform: scale(1.1);
   background-color: red;
   /* add additional animation using keyframes */
   animation: pulse 0.5s ease-in-out;
 }
+
+.add-to-cart-button:not(:hover) {
+  /* set the button scale back to normal */
+  transform: scale(1);
+  /* add additional animation using keyframes */
+  animation: pulse-back 0.5s ease-in-out;
+}
+
 @keyframes pulse {
   from {
     transform: scale(1);
@@ -82,7 +90,14 @@
   }
 }
 
-
+@keyframes pulse-back {
+  from {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(1);
+  }
+}
 
 .page{
   transition: opacity 0.4s ease-in;
@@ -129,7 +144,11 @@
   color: #fff;
   background-color: #000000;
   border-radius: 5px;
-  transition: all 0.2s ease-in-out;
+  opacity: 1;
+  transition: all 0.3s ease-in-out;
+  outline-color: black;
+  border: black;
+  width: 100%;
 }
 
 .checkout-button.hover {
@@ -144,4 +163,19 @@
   color: #fff;
   text-decoration: none;
   outline: none;
+}
+
+.total-padding{
+  padding-top: 15px;
+}
+
+.itemPics {
+  display: inline-block;
+  width: 50px;
+  height: 40px;
+  object-fit: cover;
+  margin-right: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
 }
