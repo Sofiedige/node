@@ -2,7 +2,8 @@
   {
     "id": "Lemon",
     "name": "Lemon",
-    "price": 10,
+    "type": ["Citrusfrugter"],
+    "price": 3,
     "currency": "DKK",
     "rebateQuantity": 3,
     "rebatePercent": 10,
@@ -11,7 +12,8 @@
   {
     "id": "Orange",
     "name": "Orange",
-    "price": 10,
+    "type": ["Citrusfrugter"],
+    "price": 4,
     "currency": "DKK",
     "rebateQuantity": 2,
     "rebatePercent": 25,
@@ -20,16 +22,18 @@
   {
     "id": "Watermelon",
     "name": "Watermelon",
-    "price": 175,
+    "type": ["Eksotiske frugter"],
+    "price": 40,
     "currency": "DKK",
     "rebateQuantity": 3,
-    "rebatePercent": 10,
+    "rebatePercent": 20,
     "imageUrl": "/vandmelon.jpg"
   },
   {
     "id": "Grapefruit",
     "name": "Grapefruit",
-    "price": 69,
+    "type": ["Citrusfrugter"],
+    "price": 10,
     "currency": "DKK",
     "rebateQuantity": 5,
     "rebatePercent": 10,
@@ -38,25 +42,28 @@
   {
     "id": "Grapes1",
     "name": "Red Grapes",
-    "price": 145,
+    "type": ["Bær"],
+    "price": 15,
     "currency": "DKK",
-    "rebateQuantity": 0,
-    "rebatePercent": 0,
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
     "imageUrl": "/rødevindruer.jpg"
   },
   {
     "id": "Grapes2",
     "name": "Green Grapes",
-    "price": 145,
+    "type": ["Bær"],
+    "price": 20,
     "currency": "DKK",
-    "rebateQuantity": 0,
-    "rebatePercent": 0,
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
     "imageUrl": "/grønnevindruer.jpg"
   },
   {
     "id": "Apple",
     "name": "Apple",
-    "price": 320,
+    "type": ["Andet"],
+    "price": 3,
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
@@ -65,10 +72,55 @@
   {
     "id": "Guava",
     "name": "Guava",
+    "type": ["Eksotiske frugter"],
     "price": 40,
+    "currency": "DKK",
+    "rebateQuantity": 2,
+    "rebatePercent": 10,
+    "imageUrl": "/guava.jpg"
+  }
+,
+  {
+    "id": "Dragonfruit",
+    "name": "Pitaya",
+    "type": ["Eksotiske frugter"],
+    "price": 30,
+    "currency": "DKK",
+    "rebateQuantity": 3,
+    "rebatePercent": 10,
+    "imageUrl": "/dragonfruit.jpg"
+  }
+,
+  {
+    "id": "Rambutan",
+    "name": "Rambutan",
+    "type": ["Eksotiske frugter"],
+    "price": 15,
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
-    "imageUrl": "/guava.jpg"
+    "imageUrl": "/rambutan.jpg"
+  }
+,
+  {
+    "id": "Stjernefrugt",
+    "name": "Stjernefrugt",
+    "type": ["Eksotiske frugter"],
+    "price": 25,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "imageUrl": "/stjernefrugt.jpg"
+  }
+,
+  {
+    "id": "Papaya",
+    "name": "Papaya",
+    "type": ["Eksotiske frugter"],
+    "price": 20,
+    "currency": "DKK",
+    "rebateQuantity": 0,
+    "rebatePercent": 0,
+    "imageUrl": "/papaya.jpg"
   }
 ]
