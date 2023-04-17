@@ -9,10 +9,9 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
             <Card.Img
                 variant="top"
                 src={`https://raw.githubusercontent.com/Sofiedige/node/main/public${imageUrl}`}
-                height="100px"
                 className="product-card__image"
             />
-            <Card.Body className="d-flex flex-column">
+            <Card.Body className="card-body">
                 <div className="d-flex justify-content-between align-items-baseline mb-4">
                     <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>

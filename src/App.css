@@ -220,3 +220,10 @@
   overflow-x: hidden;
 }
 
+.card-body {
+  display: flex;
+  flex-direction: column;
+}
+
+
+
