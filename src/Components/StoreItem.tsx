@@ -2,7 +2,7 @@ import {Button, Card} from "react-bootstrap"
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {Product} from "./Items";
 
-export function CheckoutItem({id, name, price, imageUrl}: Product) {
+export function CheckoutItem({id, name, price, currency, rebateQuantity, rebatePercent, imageUrl}: Product) {
     const {incrementItem} = useShoppingCart()
     return (
         <Card className="product-card">
@@ -19,7 +19,10 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
                 </div>
                 <Button
                     className="product-card__button"
-                    onClick={() => incrementItem(id)}
+                    onClick={() => {
+                        incrementItem(id)
+                    }
+                }
                     variant="success"
                 >
                     Add to cart

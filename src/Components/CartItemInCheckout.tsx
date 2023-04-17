@@ -1,22 +1,26 @@
-import storeItems from "../Data/ProductList.json"
 import {Stack} from "react-bootstrap";
 import React from "react";
+import {useShoppingCart} from "../context/ShoppingCartContext";
 
 
 type CartItemProps = {
     id: string
     quantity: number
+    imageUrl: string
+    name: string
 }
 
 export function CartItemInCheckout({id, quantity}: CartItemProps) {
-    const item = storeItems.find(i => i.id == id)
-    if (item == null) return null
+    const {getItemUrl, getItemName} = useShoppingCart();
 
     return (
         <Stack direction="horizontal" gap={2}>
             <div>
                 <div>
-                    {item.name}{" "}
+                    <img className = "itemPics"
+                         src = {`https://raw.githubusercontent.com/Sofiedige/node/main/public${getItemUrl(id)}`}
+                    />
+                    {getItemName(id)}{" "}
                     <span className="text-muted" style={{ fontSize: ".65rem" }}>
           x{quantity}
         </span>

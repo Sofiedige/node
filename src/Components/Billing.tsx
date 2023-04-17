@@ -2,11 +2,10 @@ import React, {useState} from 'react'
 import {Col, Row} from "react-bootstrap";
 import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
-import {useLocation} from "react-router-dom";
+import {useShoppingCart} from "../context/ShoppingCartContext";
 
 
-export default function Billing() {
-
+export default function Billing(){
     const [companyName, setCompanyName] = useState("");
     const [companyVatNumber, setCompanyVatNumber] = useState("");
     const [isCompanyNameFilled, setIsCompanyNameFilled] = useState(false);
@@ -31,9 +30,7 @@ export default function Billing() {
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const cartItems = JSON.parse(queryParams.get('cartItems') || '[]');
+    const {cartItems} = useShoppingCart()
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault(); // prevent default form submission behavior
@@ -72,7 +69,9 @@ export default function Billing() {
             mode: "cors",
             body: JSON.stringify(body),
         }
-        fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => setIsLoading(false))
+        fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => setIsLoading(false)
+
+        )
     }
 
     const [loading, setLoading] = useState<boolean>(false);
@@ -134,8 +133,11 @@ export default function Billing() {
     }
 
     return (
-        <><BasketInCheckout/>
+        <> <p>
+            <BasketInCheckout/>
+        </p>
             <div className="checkout-container">
+
                 <div className="form-container">
                     <h2>Enter information</h2>
                     <LoadingIndicator show={isLoading}/>

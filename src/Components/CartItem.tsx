@@ -1,39 +1,20 @@
-import { useShoppingCart } from "../context/ShoppingCartContext";
+import {CartItemModel, useShoppingCart} from "../context/ShoppingCartContext";
 import { Button } from "react-bootstrap";
 import React, { useEffect, useState } from "react";
-import {Product} from "./Items";
 
 type CartItemProps = {
     id: string;
     quantity: number;
 };
 
-
 export function CartItem({ id, quantity }: CartItemProps) {
-    const { removeItem, incrementItem, decrementItem } = useShoppingCart();
-    const [productList, setProductList] = useState<Product[]>([]);
+    const { removeItem, incrementItem, decrementItem, storeItems } = useShoppingCart();
     const [isVisible, setIsVisible] = useState(false);
-
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
-    useEffect(() => {
-        async function fetchProductList() {
-            try {
-                const response = await fetch(
-                    "https://raw.githubusercontent.com/Sofiedige/node/main/src/Data/ProductList.json"
-                );
-                const data = await response.json();
-                setProductList(data);
-            } catch (error) {
-                console.error(error);
-            }
-        }
-        fetchProductList();
-    }, []);
-
-    const item = productList.find((i: Product) => i.id === id);
+    const item = storeItems.find((i: CartItemModel) => i.id === id);
     if (item == null) return null;
 
     return (
