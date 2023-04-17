@@ -224,7 +224,8 @@ export default function Billing(){
                                 type="text"
                                 required
                                 defaultValue={cityName.toString()}
-                                disabled={true}
+                                readOnly={true}
+                                //disabled={true}
                             />
                         </div>
                         <div className="form-group">
