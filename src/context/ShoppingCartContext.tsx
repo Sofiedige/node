@@ -1,5 +1,4 @@
 import {createContext, ReactNode, useContext, useEffect, useState} from "react";
-import {CartItem} from "../Components/CartItem";
 
 type ShoppingCartProviderProps = {
     children: ReactNode;
@@ -42,7 +41,6 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                 );
                 const data = await response.json();
                 setStoreItems(data);
-                console.error("din far")
             } catch (error) {
                 console.error(error);
             }
@@ -74,23 +72,33 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     }
 
     function incrementItem(id: string) {
-        localStorage.setItem("cartItems", JSON.stringify([...cartItems, { id, quantity: 1, imageUrl: getItemUrl(id), name: getItemName(id), price: getItemPrice(id)}]));
-
         setCartItems((currItems) => {
-            if (currItems.find((item) => item.id == id) == null) {
-                return [...currItems, { id, quantity: 1, imageUrl: getItemUrl(id), name: getItemName(id), price: getItemPrice(id)}];
+            const existingItemIndex = currItems.findIndex((item) => item.id === id);
+            if (existingItemIndex !== -1) {
+                // If the item already exists in the cart, update its quantity
+                const updatedItems = [...currItems];
+                updatedItems[existingItemIndex] = {
+                    ...updatedItems[existingItemIndex],
+                    quantity: updatedItems[existingItemIndex].quantity + 1,
+                };
+                localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+                return updatedItems;
             } else {
-                return currItems.map((item) => {
-                    if (item.id == id) {
-                        return { ...item, quantity: item.quantity + 1, imageUrl: getItemUrl(id), name: getItemName(id), price: getItemPrice(id) };
-                    } else {
-                        return item;
-                    }
-                });
+                // If the item doesn't exist in the cart, add it with quantity 1
+                const newCartItem = {
+                    id,
+                    quantity: 1,
+                    imageUrl: getItemUrl(id),
+                    name: getItemName(id),
+                    price: getItemPrice(id),
+                };
+                const updatedItems = [...currItems, newCartItem];
+                localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+                return updatedItems;
             }
         });
-
     }
+
 
     function decrementItem(id: string) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
