@@ -74,6 +74,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     }
 
     function incrementItem(id: string) {
+        localStorage.setItem("cartItems", JSON.stringify([...cartItems, { id, quantity: 1, imageUrl: getItemUrl(id), name: getItemName(id), price: getItemPrice(id)}]));
+
         setCartItems((currItems) => {
             if (currItems.find((item) => item.id == id) == null) {
                 return [...currItems, { id, quantity: 1, imageUrl: getItemUrl(id), name: getItemName(id), price: getItemPrice(id)}];
@@ -87,10 +89,11 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                 });
             }
         });
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+
     }
 
     function decrementItem(id: string) {
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
         setCartItems((currItems) => {
             if (currItems.find((item) => item.id == id)?.quantity == 1) {
                 return currItems.filter((item) => item.id !== id);
@@ -104,14 +107,13 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                 });
             }
         });
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
     }
 
     function removeItem(id: string) {
         setCartItems((currItems) => {
             return currItems.filter((item) => item.id !== id);
         });
-        localStorage.setItem("cartItems", JSON.stringify(cartItems));
+        localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
     }
 
     return (
