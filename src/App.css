@@ -25,7 +25,7 @@
 .form-container {
   background-color: #dad6ca;
   padding: 20px;
-  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
   border-radius: 10px;
   margin: 15px;
 }
@@ -189,7 +189,7 @@
 
 .product-card {
   border: none;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
   overflow: hidden;
 }
@@ -226,6 +226,28 @@
 .app {
   overflow-x: hidden;
 }
+
+.my-cart-items {
+  max-width: 520px;
+  margin: 0 auto;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.my-cart-items h2 {
+  text-align: center;
+}
+
+.my-cart-items p {
+  text-align: center;
+}
+
+.my-cart-items .discount-message {
+  color: green;
+}
+
 
 .card-body {
   display: flex;

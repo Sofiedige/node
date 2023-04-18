@@ -2,11 +2,11 @@ import React, {useState} from 'react'
 import {Col, Row} from "react-bootstrap";
 import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
-import {useLocation} from "react-router-dom";
+import {useShoppingCart} from "../context/ShoppingCartContext";
+import storeItems from "../Data/ProductList.json";
 
 
-export default function Billing() {
-
+export default function Billing(){
     const [companyName, setCompanyName] = useState("");
     const [companyVatNumber, setCompanyVatNumber] = useState("");
     const [isCompanyNameFilled, setIsCompanyNameFilled] = useState(false);
@@ -27,13 +27,31 @@ export default function Billing() {
         setAddressLine2(e.target.value);
     };
 
+    const [comment, setComment] = useState("");
+
     const [isLoading, setIsLoading] = useState(false);
     const [firstName, setFirstName] = useState("");
     const [lastName, setLastName] = useState("");
     const [email, setEmail] = useState("");
-    const location = useLocation();
-    const queryParams = new URLSearchParams(location.search);
-    const cartItems = JSON.parse(queryParams.get('cartItems') || '[]');
+    const {cartItems} = useShoppingCart()
+
+    let isDiscount: boolean = false
+    let discount: number= 0
+    const total = cartItems.reduce((total: number, cartItem: { id: string; quantity: number; imageUrl: string}) => {
+        const item = storeItems.find(i => i.id === cartItem.id)
+        total = total + (item?.price || 0) * cartItem.quantity
+        isDiscount = false
+
+
+        if (total >= 300) {
+            isDiscount = true
+            discount = total * 0.1
+            total = total * 0.9
+        }
+        total.toPrecision(2)
+        discount.toPrecision(2)
+        return total
+    }, 0)
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault(); // prevent default form submission behavior
@@ -63,7 +81,9 @@ export default function Billing() {
             companyVatNumber: companyVatNumber,
             cartItem: cartItemData,
             addressLine1: addressLine1,
-            addressLine2: addressLine2
+            addressLine2: addressLine2,
+            comment: comment,
+            price: total
         };
 
         const options: RequestInit = {
@@ -73,6 +93,9 @@ export default function Billing() {
             body: JSON.stringify(body),
         }
         fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => setIsLoading(false))
+    }
+    const handleCommentChange = async (e: { target: { value: React.SetStateAction<string>; }; }) => {
+        setComment(e.target.value)
     }
 
     const [loading, setLoading] = useState<boolean>(false);
@@ -134,8 +157,11 @@ export default function Billing() {
     }
 
     return (
-        <><BasketInCheckout/>
+        <> <p>
+            <BasketInCheckout/>
+        </p>
             <div className="checkout-container">
+
                 <div className="form-container">
                     <h2>Enter information</h2>
                     <LoadingIndicator show={isLoading}/>
@@ -222,6 +248,8 @@ export default function Billing() {
                                 type="text"
                                 required
                                 defaultValue={cityName.toString()}
+                                readOnly={true}
+                                //disabled={true}
                             />
                         </div>
                         <div className="form-group">
@@ -263,7 +291,12 @@ export default function Billing() {
                         )}
                         <div className="form-group">
                             <label>Write comment here</label>
-                            <textarea name="comments" id="comments"></textarea>
+                            <textarea
+                                name="comments"
+                                id="comments"
+                                value={comment}
+                                onChange={handleCommentChange}
+                            ></textarea>
                         </div>
 
                         <div style={{
