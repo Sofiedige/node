@@ -10,12 +10,14 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
                 variant="top"
                 src={`https://raw.githubusercontent.com/Sofiedige/node/main/public${imageUrl}`}
                 className="product-card__image"
+                height="180px"
+                style={{objectFit: "cover"}}
             />
             <Card.Body className="card-body">
-                <div className="d-flex justify-content-between align-items-baseline mb-4">
+
                     <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>
-                </div>
+
                 <Button
                     className="product-card__button"
                     onClick={() => incrementItem(id)}
