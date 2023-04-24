@@ -45,13 +45,13 @@ export default function Items() {
                 onChange={e => setSearchInput(e.target.value)}
             />
             <h2>Products</h2>
-            <Row lg={3} md={2} xs={1} className="g-3" style={{ justifyContent: 'flex-start' }}>
+            <div className="row-container">
                 {filteredItems.map(item => (
-                    <Col key={item.id}>
+                    <div key={item.id} className="col-container">
                         <CheckoutItem {...item} />
-                    </Col>
+                    </div>
                 ))}
-            </Row>
+            </div>
         </aside>
     );
 }
