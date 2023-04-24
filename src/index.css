@@ -55,6 +55,9 @@ a{
     color: #fff;
     border: 0;
 }
+.link Link{
+    color: #1fa57d;
+}
 
 input[type=checkbox] {
     margin-right: 18px;

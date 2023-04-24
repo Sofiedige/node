@@ -4,7 +4,7 @@ import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json";
-
+import {navigate} from "../App";
 
 export default function Billing(){
     const [companyName, setCompanyName] = useState("");
@@ -55,10 +55,10 @@ export default function Billing(){
 
     const handleSubmit = (event: { preventDefault: () => void; }) => {
         event.preventDefault(); // prevent default form submission behavior
-        handleMySubmit()
+        handleMySubmit(event)
     };
 
-    function handleMySubmit() {
+    function handleMySubmit(event: { preventDefault: () => void; }) {
         setIsLoading(true);
         const headers = new Headers();
         headers.append("Content-Type", "application/json");
@@ -92,7 +92,10 @@ export default function Billing(){
             mode: "cors",
             body: JSON.stringify(body),
         }
-        fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => setIsLoading(false))
+        fetch("https://eo6qnsie1ivk0gm.m.pipedream.net", options).then(() => {
+            setIsLoading(false)
+            navigate(event, "continue")
+        })
     }
     const handleCommentChange = async (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setComment(e.target.value)

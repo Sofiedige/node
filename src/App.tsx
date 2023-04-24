@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css"
 import Home from './Pages/Home';
 import React, { useEffect, useState } from "react";
 import { Checkout } from "./Pages/Checkout";
+import { Verification } from "./Pages/Verification";
 
 export function navigate(event: { preventDefault: () => void; }, newPage: string) {
     event.preventDefault(); // prevent standard behavior
@@ -30,6 +31,7 @@ export default function App() {
 
     const homeClasses = `page ${myPage === "home" ? 'navigated' : 'navigating'}`;
     const checkoutClasses = `page ${myPage === "checkout" ? 'navigated' : 'navigating'}`;
+    const verificationClasses = `page ${myPage === "continue" ? 'navigated' : 'navigating'}`;
 
     return (
         <div className="app">
@@ -38,6 +40,9 @@ export default function App() {
             </div>
             <div className={checkoutClasses}>
                 {myPage === "checkout" && <Checkout />}
+            </div>
+            <div className={verificationClasses}>
+                {myPage === "continue" && <Verification />}
             </div>
         </div>
     )

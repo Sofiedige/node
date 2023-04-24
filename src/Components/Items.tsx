@@ -5,6 +5,7 @@ import { CheckoutItem } from "./StoreItem";
 export interface Product {
     id: string;
     name: string;
+    type: string;
     price: number;
     currency: string;
     rebateQuantity: number;
@@ -32,6 +33,7 @@ export default function Items() {
     }, []);
 
     const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()));
+   // const filteredTypes = items.filter(items => items.type.toLowerCase().includes("eksotiskefrugter"));
 
     return (
         <aside className="block col-2">

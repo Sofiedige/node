@@ -2,7 +2,7 @@
   {
     "id": "Lemon",
     "name": "Lemon",
-    "type": ["Citrusfrugter"],
+    "type": "Citrusfrugter",
     "price": 3,
     "currency": "DKK",
     "rebateQuantity": 3,
@@ -12,7 +12,7 @@
   {
     "id": "Orange",
     "name": "Orange",
-    "type": ["Citrusfrugter"],
+    "type": "Citrusfrugter",
     "price": 4,
     "currency": "DKK",
     "rebateQuantity": 2,
@@ -22,7 +22,7 @@
   {
     "id": "Watermelon",
     "name": "Watermelon",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiskefrugter",
     "price": 40,
     "currency": "DKK",
     "rebateQuantity": 3,
@@ -32,7 +32,7 @@
   {
     "id": "Grapefruit",
     "name": "Grapefruit",
-    "type": ["Citrusfrugter"],
+    "type": "Citrusfrugter",
     "price": 10,
     "currency": "DKK",
     "rebateQuantity": 5,
@@ -42,7 +42,7 @@
   {
     "id": "Grapes1",
     "name": "Red Grapes",
-    "type": ["Bær"],
+    "type": "Bær",
     "price": 15,
     "currency": "DKK",
     "rebateQuantity": 2,
@@ -52,7 +52,7 @@
   {
     "id": "Grapes2",
     "name": "Green Grapes",
-    "type": ["Bær"],
+    "type": "Bær",
     "price": 20,
     "currency": "DKK",
     "rebateQuantity": 2,
@@ -62,7 +62,7 @@
   {
     "id": "Apple",
     "name": "Apple",
-    "type": ["Andet"],
+    "type": "Andet",
     "price": 3,
     "currency": "DKK",
     "rebateQuantity": 0,
@@ -72,7 +72,7 @@
   {
     "id": "Guava",
     "name": "Guava",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiske frugter",
     "price": 40,
     "currency": "DKK",
     "rebateQuantity": 2,
@@ -83,7 +83,7 @@
   {
     "id": "Dragonfruit",
     "name": "Pitaya",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiske frugter",
     "price": 30,
     "currency": "DKK",
     "rebateQuantity": 3,
@@ -94,7 +94,7 @@
   {
     "id": "Rambutan",
     "name": "Rambutan",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiske frugter",
     "price": 15,
     "currency": "DKK",
     "rebateQuantity": 0,
@@ -105,7 +105,7 @@
   {
     "id": "Stjernefrugt",
     "name": "Stjernefrugt",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiske frugter",
     "price": 25,
     "currency": "DKK",
     "rebateQuantity": 0,
@@ -116,11 +116,11 @@
   {
     "id": "Papaya",
     "name": "Papaya",
-    "type": ["Eksotiske frugter"],
+    "type": "Eksotiske frugter",
     "price": 20,
     "currency": "DKK",
     "rebateQuantity": 0,
     "rebatePercent": 0,
     "imageUrl": "/papaya.jpg"
   }
-]
+  ]
