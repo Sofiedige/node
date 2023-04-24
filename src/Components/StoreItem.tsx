@@ -9,20 +9,17 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
             <Card.Img className="product-card_image"
                 variant="top"
                 src={`https://raw.githubusercontent.com/Sofiedige/node/main/public${imageUrl}`}
-                height="100px"
+                height="180px"
                 style={{objectFit: "cover"}}
             />
             <Card.Body className="card-body">
-                <Card.Title className="card-title">
+
                     <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>
-                </Card.Title>
+
                 <Button
                     className="product-card__button"
-                    onClick={() => {
-                        incrementItem(id)
-                    }
-                }
+                    onClick={() => incrementItem(id)}
                     variant="success"
                 >
                     Add to cart
