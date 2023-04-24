@@ -35,7 +35,7 @@ export function CartItem({ id, quantity }: CartItemProps) {
             {item.price * quantity} kr.
             <div>
                 <div
-                    className="d-flex align-items-center justify-content-center"
+                    className="center"
                     style={{ gap: ".5rem" }}
                 >
                     {quantity > 1 ? (
