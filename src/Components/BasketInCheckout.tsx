@@ -29,8 +29,8 @@ export default function BasketInCheckout() {
 
     //tilføj rebatlogik.
     return (
-        <aside className="my-cart-items">
-            <h2>Cart Items</h2>
+        <div className="my-cart-items">
+        <h2>Cart Items</h2>
             <Stack gap={0}>
                 {cartItems.map((item: JSX.IntrinsicAttributes & { id: string; quantity: number; imageUrl: string}) => (
                     <CartItemInCheckout name={""} key={item.id} {...item} />
@@ -50,7 +50,7 @@ export default function BasketInCheckout() {
             ) : (
                 <p>No items added in cart</p>
             )}
-        </aside>
+        </div>
 
 
     )
