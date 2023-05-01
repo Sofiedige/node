@@ -263,11 +263,12 @@
   transform: scale(1.05);
 }
 
-.expensive_item {
+.product-card .expensive_item {
   background-color: #fffee6;
   border-block: #1fa57d;
-  border-bottom-width: 2px;
   border-style: outset;
+  display: flex;
+  flex-direction: column;
 }
 
 .app {

@@ -10,10 +10,8 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
             <div className="product-card_image"
                  style={{ backgroundImage: `url(https://raw.githubusercontent.com/Sofiedige/node/main/public${imageUrl})` }}
             />
-            <div className="card-body">
-
-            <Card.Body className={` ${getExpensiveItem(id) ? "expensive_item" : ""}`}>
-                    <span className="product-card__name">{name}</span>
+            <div className={` ${getExpensiveItem(id) ? "expensive_item" : "card-body"}`}>
+                 <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>
 
                 <Button
