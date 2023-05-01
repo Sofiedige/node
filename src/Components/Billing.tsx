@@ -167,7 +167,7 @@ export default function Billing() {
             <div className="goback-button"
                     onClick={(event) =>
                         navigate(event, "home")}>
-                Go back shopping
+                Go back to shopping
 
             </div>
             </div>
