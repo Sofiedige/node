@@ -311,9 +311,17 @@
   align-items: center;
 }
 
-.billede{
+.verificationimage{
+  justify-content: center;
   height: 100px;
   width: 100px;
-
 }
 
+.row-middle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* sets height for the row */
+  height: 100%;
+}
