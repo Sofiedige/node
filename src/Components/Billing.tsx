@@ -6,6 +6,11 @@ import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json";
 import {navigate} from "../App";
 
+export function isValidPhoneNumber(phoneNumber: string): boolean {
+    const regex = /^(\+|\d)[0-9]*$/;
+    return regex.test(phoneNumber);
+}
+
 export default function Billing() {
     const [companyName, setCompanyName] = useState("");
     const [companyVatNumber, setCompanyVatNumber] = useState("");
@@ -143,11 +148,6 @@ export default function Billing() {
     }
 
     const [phoneNumber, setPhoneNumber] = useState<String>("");
-
-    function isValidPhoneNumber(phoneNumber: string): boolean {
-        const regex = /^(\+|\d)[0-9]*$/;
-        return regex.test(phoneNumber);
-    }
 
     const handlePhoneNumberChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newPhoneNumber = event.target.value;
@@ -359,9 +359,8 @@ export default function Billing() {
                         }}>
                             <div>
                                 <input type="checkbox" id="terms" required={true}
-
                                        onInvalid={(event) => {
-                                           (event.target as HTMLInputElement).setCustomValidity("Accept the terms and conitions!")
+                                           (event.target as HTMLInputElement).setCustomValidity("Accept the terms and conitions!");
                                        }}
                                        onInput={(event) => {
                                            (event.target as HTMLInputElement).setCustomValidity("")
