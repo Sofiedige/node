@@ -62,18 +62,19 @@
   align-items: center;
   font-size: 18px;
   font-weight: bold;
-  text-transform: uppercase;
   background-color: #4CAF50;
   color: #FFFFFF;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
   transition: all 0.3s ease-in-out;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 100%;
 }
 
 .continue-button:hover {
   transform: scale(1.05);
   box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.25);
 }
-
 
 .add-to-cart-button {
   /* set the button size and other styles */
@@ -135,6 +136,7 @@
   opacity: 0;
   transform: translateX(-50px);
   transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+  justify-content: space-between;
 }
 
 .cart-item.slide-in {
@@ -219,6 +221,17 @@
 .product-card .product-card_image {
   object-fit: cover;
   height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
+}
+.cart-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 1px solid #ccc;
 }
 
 
@@ -273,6 +286,23 @@
   flex-wrap: wrap;
   justify-content: space-between;
 }
+.item-info {
+  display: flex;
+  align-items: center;
+}
+
+
+
+.item-name {
+  font-size: 1rem;
+  font-weight: bold;
+}
+
+.item-quantity {
+  margin-left: auto;
+  font-size: 0.75rem;
+  color: #666;
+}
 
 .row-container {
   display: grid;
@@ -317,9 +347,72 @@
   align-items: center;
 }
 
-.billede{
+.mycenter {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.verificationimage{
+  justify-content: center;
   height: 100px;
   width: 100px;
+}
 
+.row-middle{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  /* sets height for the row */
+  height: 100%;
+}
+
+.checkboxes{
+  display: flex;
+  alignItems: center;
+  justifyContent: space-between;
+}
+
+.my-container {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 -1.5rem;
+}
+
+.my-row {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0 1.5rem;
+  width: 100%;
+}
+
+.my-col {
+  flex: 1 1 0;
+  margin: 0 1.5rem;
+}
+
+.remove-btn {
+  color: gray;
+  border: none;
+  padding: 10px 20px;
+  cursor: pointer;
+  border-radius: 5px;
+  font-size: 16px;
+  text-underline-color: gray;
+}
+
+hr.solid {
+  border-top: 3px solid #bbb;
+}
+
+select {;
+  background-size: 1.5rem;
+  background-position: right .5rem center;
+  padding-right: 2rem;
+}
+
+select::-ms-expand {
+  display: none;
 }
 

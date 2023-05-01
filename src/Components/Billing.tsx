@@ -1,12 +1,16 @@
 import React, {useState} from 'react'
-import {Col, Row} from "react-bootstrap";
 import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import storeItems from "../Data/ProductList.json";
 import {navigate} from "../App";
 
-export default function Billing(){
+export function isValidPhoneNumber(phoneNumber: string): boolean {
+    const regex = /^(\+|\d)[0-9]*$/;
+    return regex.test(phoneNumber);
+}
+
+export default function Billing() {
     const [companyName, setCompanyName] = useState("");
     const [companyVatNumber, setCompanyVatNumber] = useState("");
     const [isCompanyNameFilled, setIsCompanyNameFilled] = useState(false);
@@ -36,8 +40,8 @@ export default function Billing(){
     const {cartItems} = useShoppingCart()
 
     let isDiscount: boolean = false
-    let discount: number= 0
-    const total = cartItems.reduce((total: number, cartItem: { id: string; quantity: number; imageUrl: string}) => {
+    let discount: number = 0
+    const total = cartItems.reduce((total: number, cartItem: { id: string; quantity: number; imageUrl: string }) => {
         const item = storeItems.find(i => i.id === cartItem.id)
         total = total + (item?.price || 0) * cartItem.quantity
         isDiscount = false
@@ -97,6 +101,7 @@ export default function Billing(){
             navigate(event, "continue")
         })
     }
+
     const handleCommentChange = async (e: { target: { value: React.SetStateAction<string>; }; }) => {
         setComment(e.target.value)
     }
@@ -143,11 +148,6 @@ export default function Billing(){
 
     const [phoneNumber, setPhoneNumber] = useState<String>("");
 
-    function isValidPhoneNumber(phoneNumber: string): boolean {
-        const regex = /^(\+|\d)[0-9]*$/;
-        return regex.test(phoneNumber);
-    }
-
     const handlePhoneNumberChange = async (event: React.ChangeEvent<HTMLInputElement>) => {
         const newPhoneNumber = event.target.value;
 
@@ -164,14 +164,11 @@ export default function Billing(){
             <BasketInCheckout/>
         </p>
             <div className="checkout-container">
-
                 <div className="form-container">
                     <h2>Enter information</h2>
-                    <LoadingIndicator show={isLoading}/>
-
                     <form className="bill" onSubmit={handleSubmit}>
-                        <Row lg={2} md={2} xs={1} className="g-3">
-                            <Col>
+                        <div className="my-container">
+                            <div className = "my-row">
                                 <div className="form-group">
                                     <label>First name *</label>
                                     <input
@@ -184,10 +181,17 @@ export default function Billing(){
                                             }
                                         }}
                                         required
+
+                                        onInvalid={(event) => {
+                                            (event.target as HTMLInputElement).setCustomValidity("You need to fill out your name!")
+                                        }}
+                                        onInput={(event) => {
+                                            (event.target as HTMLInputElement).setCustomValidity("")
+                                        }}
                                     />
                                 </div>
-                            </Col>
-                            <Col>
+                            </div>
+                            <div className = "my-row">
                                 <div className="form-group">
                                     <label>Last name *</label>
                                     <input
@@ -200,10 +204,17 @@ export default function Billing(){
                                             }
                                         }}
                                         required
+
+                                        onInvalid={(event) => {
+                                            (event.target as HTMLInputElement).setCustomValidity("You need to fill out last name!")
+                                        }}
+                                        onInput={(event) => {
+                                            (event.target as HTMLInputElement).setCustomValidity("")
+                                        }}
                                     />
                                 </div>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                         <div className="form-group">
                             <label>Phone number</label>
                             <input
@@ -213,6 +224,13 @@ export default function Billing(){
                                 maxLength={12}
                                 value={phoneNumber.toString()}
                                 onChange={handlePhoneNumberChange}
+
+                                onInvalid={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("You need to fill in your correct phone number")
+                                }}
+                                onInput={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("")
+                                }}
                             />
                         </div>
                         <div className="form-group">
@@ -222,6 +240,13 @@ export default function Billing(){
                                 type="email"
                                 value={email}
                                 onChange={(event) => setEmail(event.target.value)}
+
+                                onInvalid={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("Please fill out a valid mail!")
+                                }}
+                                onInput={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("")
+                                }}
                             />
                         </div>
                         <div className="form-group">
@@ -240,6 +265,13 @@ export default function Billing(){
                                     required
                                     value={zipCode.toString()}
                                     onChange={handleZipCodeChange}
+
+                                    onInvalid={(event) => {
+                                        (event.target as HTMLInputElement).setCustomValidity("Invalid zip info")
+                                    }}
+                                    onInput={(event) => {
+                                        (event.target as HTMLInputElement).setCustomValidity("")
+                                    }}
                                 />
                                 {loading !== null && loading && <div>Loading..</div>}
                                 {!loading && <p>{zipMessage}</p>}
@@ -252,7 +284,6 @@ export default function Billing(){
                                 required
                                 defaultValue={cityName.toString()}
                                 readOnly={true}
-                                //disabled={true}
                             />
                         </div>
                         <div className="form-group">
@@ -262,6 +293,13 @@ export default function Billing(){
                                 value={addressLine1}
                                 onChange={handleAddressLine1Change}
                                 required
+
+                                onInvalid={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("We don't know where to deliver your fruits!")
+                                }}
+                                onInput={(event) => {
+                                    (event.target as HTMLInputElement).setCustomValidity("")
+                                }}
                             />
                         </div>
                         <div className="form-group">
@@ -289,6 +327,13 @@ export default function Billing(){
                                     value={companyVatNumber}
                                     onChange={handleCompanyVatNumberChange}
                                     required
+
+                                    onInvalid={(event) => {
+                                        (event.target as HTMLInputElement).setCustomValidity("Company needs a VAT number!")
+                                    }}
+                                    onInput={(event) => {
+                                        (event.target as HTMLInputElement).setCustomValidity("")
+                                    }}
                                 />
                             </div>
                         )}
@@ -309,18 +354,21 @@ export default function Billing(){
                             justifyContent: 'space-between'
                         }}>
                             <div>
-                                <input type="checkbox" id="terms" required={true}/>
+                                <input type="checkbox" id="terms" required={true}
+                                       onInvalid={(event) => {
+                                           (event.target as HTMLInputElement).setCustomValidity("Accept the terms and conitions!");
+                                       }}
+                                       onInput={(event) => {
+                                           (event.target as HTMLInputElement).setCustomValidity("")
+                                       }}
+                                />
                             </div>
                             <div style={{flex: 1}}>
                                 <label htmlFor="terms"> Terms and conditions</label>
                             </div>
                         </div>
 
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between'
-                        }}>
+                        <div className={"checkboxes"}>
                             <div>
                                 <input type="checkbox" id="marketing"/>
                             </div>
@@ -328,9 +376,9 @@ export default function Billing(){
                                 <label htmlFor="marketing"> I accept to receive marketing emails</label>
                             </div>
                         </div>
-
-                        <div className="continue-button">
-                            <button type="submit">Continue</button>
+                        <LoadingIndicator show={isLoading}/>
+                        <div>
+                            <button className="continue-button" type="submit">Continue</button>
                         </div>
                     </form>
                 </div>
