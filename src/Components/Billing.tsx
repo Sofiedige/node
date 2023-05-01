@@ -228,7 +228,6 @@ export default function Billing() {
                         <div className="form-group">
                             <label>Phone number</label>
                             <input
-                                required
                                 type="text"
                                 minLength={8}
                                 maxLength={12}
