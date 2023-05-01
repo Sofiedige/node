@@ -162,6 +162,15 @@ export default function Billing() {
     return (
         <> <p>
             <BasketInCheckout/>
+
+            <div className="goback-container">
+            <div className="goback-button"
+                    onClick={(event) =>
+                        navigate(event, "home")}>
+                Go back to shopping
+
+            </div>
+            </div>
         </p>
             <div className="checkout-container">
                 <div className="form-container">
