@@ -237,11 +237,13 @@
 
 
 .product-card__name {
+  padding-left: 10px;
   flex: 0 0 auto;
   font-size: 1.2rem;
 }
 
 .product-card__price {
+  padding-left: 10px;
   flex: 0 0 auto;
   font-size: 1.2rem;
   color: #6c757d;
