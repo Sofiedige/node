@@ -174,7 +174,7 @@ export default function Billing() {
         </p>
             <div className="checkout-container">
                 <div className="form-container">
-                    <h2>Enter information</h2>
+                    <h2 className="center">Enter information</h2>
                     <form className="bill" onSubmit={handleSubmit}>
                         <div className="my-container">
                             <div className = "my-row">
@@ -200,6 +200,7 @@ export default function Billing() {
                                     />
                                 </div>
                             </div>
+
                             <div className = "my-row">
                                 <div className="form-group">
                                     <label>Last name *</label>
