@@ -14,7 +14,7 @@ export function CartItemInCheckout({id, quantity}: CartItemProps) {
     const {getItemUrl, getItemName} = useShoppingCart();
 
     return (
-        <Stack direction="horizontal" gap={2}>
+        <div className="card-item">
             <div>
                 <div>
                     <img className = "itemPics"
@@ -26,6 +26,6 @@ export function CartItemInCheckout({id, quantity}: CartItemProps) {
         </span>
                 </div>
             </div>
-        </Stack>
+        </div>
     );
 }
