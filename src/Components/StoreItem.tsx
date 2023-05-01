@@ -1,4 +1,4 @@
-import {Button, Card} from "react-bootstrap"
+import {Button} from "react-bootstrap"
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {Product} from "./Items";
 
@@ -9,7 +9,7 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
             <div className="product-card_image"
                  style={{ backgroundImage: `url(https://raw.githubusercontent.com/Sofiedige/node/main/public${imageUrl})` }}
             />
-            <Card.Body className="card-body">
+            <div className="card-body">
 
                     <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>
@@ -21,7 +21,7 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
                 >
                     Add to cart
                 </Button>
-            </Card.Body>
+            </div>
         </div>
     );
 }
