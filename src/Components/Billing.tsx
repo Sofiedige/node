@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Col, Row} from "react-bootstrap";
 import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
 import {useShoppingCart} from "../context/ShoppingCartContext";
@@ -165,14 +164,11 @@ export default function Billing() {
             <BasketInCheckout/>
         </p>
             <div className="checkout-container">
-
                 <div className="form-container">
                     <h2>Enter information</h2>
-
-
                     <form className="bill" onSubmit={handleSubmit}>
-                        <Row lg={2} md={2} xs={1} className="g-3">
-                            <Col>
+                        <div className="my-container">
+                            <div className = "my-row">
                                 <div className="form-group">
                                     <label>First name *</label>
                                     <input
@@ -194,8 +190,8 @@ export default function Billing() {
                                         }}
                                     />
                                 </div>
-                            </Col>
-                            <Col>
+                            </div>
+                            <div className = "my-row">
                                 <div className="form-group">
                                     <label>Last name *</label>
                                     <input
@@ -217,8 +213,8 @@ export default function Billing() {
                                         }}
                                     />
                                 </div>
-                            </Col>
-                        </Row>
+                            </div>
+                        </div>
                         <div className="form-group">
                             <label>Phone number</label>
                             <input
@@ -372,11 +368,7 @@ export default function Billing() {
                             </div>
                         </div>
 
-                        <div style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            justifyContent: 'space-between'
-                        }}>
+                        <div className={"checkboxes"}>
                             <div>
                                 <input type="checkbox" id="marketing"/>
                             </div>
