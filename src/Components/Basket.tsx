@@ -9,8 +9,12 @@ import {navigate} from "../App";
 export default function Basket() {
     const {cartItems, storeItems} = useShoppingCart()
 
+    /*
+    For "Others also bought ... " with expensive items at the bottom of cart.
+    Feature not finished.
     const sortedStoreItems = [...storeItems].sort((a, b) => a.price - b.price);
     const upsellItems = sortedStoreItems.slice(0,3)
+     */
 
     let isDiscount: boolean = false
     let discount: number = 0
