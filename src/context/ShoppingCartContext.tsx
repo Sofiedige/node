@@ -73,13 +73,8 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     }
 
     function checkQuantityRebate(item: CartItemModel) {
-        if((item.price >= 20 && item.quantity >= 5) ||
-            item.quantity >= 10){
-            item.isRebateQuantity = true;
-        }
-        else {
-            item.isRebateQuantity = false;
-        }
+        item.isRebateQuantity = (item.price >= 20 && item.quantity >= 5) ||
+            (item.quantity >= 10 && item.price < 20);
     }
 
     function incrementItem(id: string) {

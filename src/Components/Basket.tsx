@@ -27,6 +27,7 @@ export default function Basket() {
             total = total + (cartItem.price || 0) * cartItem.quantity * 0.9
             isQuanDiscount = true
         } else {
+            console.log("Ingen rabat")
             total = total + (cartItem.price || 0) * cartItem.quantity
         }
 
