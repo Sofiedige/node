@@ -309,7 +309,7 @@ export default function Billing(){
                             justifyContent: 'space-between'
                         }}>
                             <div>
-                                <input type="checkbox" id="terms"/>
+                                <input type="checkbox" id="terms" required={true}/>
                             </div>
                             <div style={{flex: 1}}>
                                 <label htmlFor="terms"> Terms and conditions</label>

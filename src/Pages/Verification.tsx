@@ -9,15 +9,11 @@ export function Verification() {
         <ShoppingCartProvider>
             <div>
                 <Header/>
-
-<div
-    className="row">
-</div>
+                <div
+                    className="row">
+                </div>
                 <ConfirmedVerification/>
-
             </div>
         </ShoppingCartProvider>
     );
-
-
 }
