@@ -255,8 +255,14 @@
   font-size: 1rem;
   font-weight: bold;
   margin-top: auto;
-  margin-bottom: 1rem;
   transition: all 0.2s ease-in-out !important;
+  background-color: #198754;
+  border-radius: 5px;
+  align-items: center;
+  justify-content: center;
+  color: #FFFFFF;
+  border-color: transparent;
+
 }
 
 
