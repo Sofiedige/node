@@ -14,7 +14,7 @@ type ShoppingCartContext = {
     getItemUrl: (id: string) => string
     getItemName: (id: string) => string
     removeFromLocalStorage: () =>void
-
+    setQuantity: (id: string, quantity: number) => void
 }
 
 export type CartItemModel = {
@@ -126,13 +126,25 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
     }
 
+    function setQuantity(id: string, quantity: number) {
+        setCartItems((currItems) => {
+            const newItems = [...currItems];
+            const index = newItems.findIndex((item) => item.id === id);
+            if (index !== -1) {
+                newItems[index].quantity = quantity;
+                localStorage.setItem("cartItems", JSON.stringify(newItems));
+            }
+            return newItems;
+        });
+    }
+
     function removeFromLocalStorage(){
         localStorage.clear()
     }
 
     return (
         <ShoppingCartContext.Provider
-            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, getItemUrl, getItemName, removeFromLocalStorage}}
+            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, setQuantity, getItemUrl, getItemName, removeFromLocalStorage}}
         >
             {children}
         </ShoppingCartContext.Provider>
