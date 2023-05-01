@@ -1,6 +1,4 @@
 <head>
-
-
         <div className=" mb-20 container">
             <h1>h</h1>
             <div className="border border-brand-primary border-l-0 border-r-0 container lg:p-20 mt-6 overflow-hidden p-12 relative">
