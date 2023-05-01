@@ -220,6 +220,9 @@
 .product-card .product-card_image {
   object-fit: cover;
   height: 180px;
+  background-size: cover;
+  background-position: center;
+  border-radius: 5px;
 }
 .cart-item {
   display: flex;
