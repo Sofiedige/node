@@ -48,6 +48,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                 console.error(error);
             }
         }
+
         fetchProductList();
     }, []);
 
@@ -111,7 +112,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
             } else {
                 return currItems.map((item) => {
                     if (item.id == id) {
-                        return { ...item, quantity: item.quantity - 1 };
+                        return {...item, quantity: item.quantity - 1};
                     } else {
                         return item;
                     }
@@ -139,20 +140,33 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         });
     }
 
-    function removeFromLocalStorage(){
+    function removeFromLocalStorage() {
         localStorage.clear()
     }
 
-    function getExpensiveItem (id: string){
+    function getExpensiveItem(id: string) {
         const curItemPrice = storeItems.find((item) => item.id == id)?.price || 0;
         return curItemPrice >= 30;
     }
 
     return (
         <ShoppingCartContext.Provider
-            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, setQuantity, getItemUrl, getItemName, removeFromLocalStorage, getExpensiveItem}}
+            value={{
+                getItemQuantity,
+                incrementItem,
+                decrementItem,
+                removeItem,
+                cartItems,
+                storeItems,
+                setQuantity,
+                getItemUrl,
+                getItemName,
+                removeFromLocalStorage,
+                getExpensiveItem
+            }}
         >
             {children}
         </ShoppingCartContext.Provider>
     );
 }
+
