@@ -31,7 +31,6 @@ export default function Items() {
     }, []);
 
     const filteredItems = items.filter(item => item.name.toLowerCase().includes(searchInput.toLowerCase()));
-   // const filteredTypes = items.filter(items => items.type.toLowerCase().includes("eksotiskefrugter"));
 
     return (
         <aside className="block col-2">

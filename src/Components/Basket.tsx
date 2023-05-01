@@ -43,7 +43,7 @@ export default function Basket() {
     };
 
     return (
-        <aside className="block col-1">
+        <div className="block col-1">
             <h2> Cart Items </h2>
             <div className="cart-items">
                 {cartItems.map(item => (
@@ -81,6 +81,6 @@ export default function Basket() {
                     Checkout
                 </button>
             )}
-        </aside>
+        </div>
     );
 }

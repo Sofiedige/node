@@ -8,7 +8,7 @@ export default function Home() {
         <ShoppingCartProvider>
             <div>
                 <Header/>
-                <div className="row">
+                <div className="my-row">
                     <Items/>
                     <Basket/>
                 </div>
