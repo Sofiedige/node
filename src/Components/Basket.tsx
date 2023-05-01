@@ -1,18 +1,11 @@
 import React, {useState} from 'react'
-import {CartItemModel, useShoppingCart} from "../context/ShoppingCartContext";
+import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
 import {navigate} from "../App";
 
-function isItemQuantityDiscount(cartItem: CartItemModel) {
-    if (cartItem.price >= 20 && cartItem.quantity) {
-
-    }
-
-}
-
 export default function Basket() {
-    const {cartItems, storeItems} = useShoppingCart()
+    //const {cartItems, storeItems} = useShoppingCart()
 
     /*
     For "Others also bought ... " with expensive items at the bottom of cart.
@@ -20,11 +13,12 @@ export default function Basket() {
     const sortedStoreItems = [...storeItems].sort((a, b) => a.price - b.price);
     const upsellItems = sortedStoreItems.slice(0,3)
      */
-
-    let isDiscount: boolean = false
-    const {cartItems} = useShoppingCart()
     let isTotalDiscount: boolean = false
     let isQuanDiscount: boolean = false
+    const {cartItems} = useShoppingCart()
+
+    let totalDiscount: number = 0
+    let quanDiscount: number = 0
 
     let discount: number = 0
 
@@ -33,21 +27,25 @@ export default function Basket() {
 
         //calculates possible quantity discount.
         if (cartItem.isRebateQuantity) {
+            quanDiscount = (cartItem.price || 0) * cartItem.quantity * 0.1
             total = total + (cartItem.price || 0) * cartItem.quantity * 0.9
             isQuanDiscount = true
         } else {
-            console.log("Ingen rabat")
             total = total + (cartItem.price || 0) * cartItem.quantity
         }
 
         //calculates discount for when total is over 300
         if (total >= 300) {
             isTotalDiscount = true
-            discount = total * 0.1
+            totalDiscount = total * 0.1
             total = total * 0.9
         }
         total.toPrecision(2)
-        discount.toPrecision(2)
+        totalDiscount.toPrecision(2)
+        quanDiscount.toPrecision(2)
+
+        discount = totalDiscount+quanDiscount
+
         return total
     }, 0)
 
@@ -64,6 +62,11 @@ export default function Basket() {
     return (
         <aside className="block col-1">
             <h2> Cart Items </h2>
+            <p>
+                Buy 10 or more of the same fruit to enjoy a 10% discount!
+                <br/>
+                For fruits over 20 kr, you only need to add 5 to save 10%
+            </p>
             <div className="cart-items">
                 {cartItems.map(item => (
                     <CartItem key={item.id} {...item} />

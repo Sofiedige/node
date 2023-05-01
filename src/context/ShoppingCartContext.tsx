@@ -151,6 +151,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
             const index = newItems.findIndex((item) => item.id === id);
             if (index !== -1) {
                 newItems[index].quantity = quantity;
+                checkQuantityRebate(newItems[index])
                 localStorage.setItem("cartItems", JSON.stringify(newItems));
             }
             return newItems;
