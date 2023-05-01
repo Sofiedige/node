@@ -13,6 +13,9 @@ type ShoppingCartContext = {
     storeItems: CartItemModel[]
     getItemUrl: (id: string) => string
     getItemName: (id: string) => string
+    getExpensiveItem: (id: string) => boolean
+    removeFromLocalStorage: () =>void
+    setQuantity: (id: string, quantity: number) => void
 }
 
 export type CartItemModel = {
@@ -46,6 +49,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                 console.error(error);
             }
         }
+
         fetchProductList();
     }, []);
 
@@ -141,11 +145,45 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
     }
 
+    function setQuantity(id: string, quantity: number) {
+        setCartItems((currItems) => {
+            const newItems = [...currItems];
+            const index = newItems.findIndex((item) => item.id === id);
+            if (index !== -1) {
+                newItems[index].quantity = quantity;
+                localStorage.setItem("cartItems", JSON.stringify(newItems));
+            }
+            return newItems;
+        });
+    }
+
+    function removeFromLocalStorage() {
+        localStorage.clear()
+    }
+
+    function getExpensiveItem(id: string) {
+        const curItemPrice = storeItems.find((item) => item.id == id)?.price || 0;
+        return curItemPrice >= 30;
+    }
+
     return (
         <ShoppingCartContext.Provider
-            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, getItemUrl, getItemName}}
+            value={{
+                getItemQuantity,
+                incrementItem,
+                decrementItem,
+                removeItem,
+                cartItems,
+                storeItems,
+                setQuantity,
+                getItemUrl,
+                getItemName,
+                removeFromLocalStorage,
+                getExpensiveItem
+            }}
         >
             {children}
         </ShoppingCartContext.Provider>
     );
 }
+

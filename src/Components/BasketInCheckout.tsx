@@ -1,4 +1,4 @@
-import {Stack} from "react-bootstrap";
+//import {Stack} from "react-bootstrap";
 import storeItems from "../Data/ProductList.json"
 import {CartItemInCheckout} from "./CartItemInCheckout";
 import React from "react";
@@ -31,11 +31,11 @@ export default function BasketInCheckout() {
     return (
         <div className="my-cart-items">
         <h2>Cart Items</h2>
-            <Stack gap={0}>
+            <div>
                 {cartItems.map((item: JSX.IntrinsicAttributes & { id: string; quantity: number; imageUrl: string}) => (
                     <CartItemInCheckout name={""} key={item.id} {...item} />
                 ))}
-            </Stack>
+            </div>
             {total > 0 ? (
                 <p>
                     Total {total.toFixed(2)} kr.

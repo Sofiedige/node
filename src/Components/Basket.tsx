@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Stack} from "react-bootstrap";
 import {CartItemModel, useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
@@ -13,6 +12,16 @@ function isItemQuantityDiscount(cartItem: CartItemModel) {
 }
 
 export default function Basket() {
+    const {cartItems, storeItems} = useShoppingCart()
+
+    /*
+    For "Others also bought ... " with expensive items at the bottom of cart.
+    Feature not finished.
+    const sortedStoreItems = [...storeItems].sort((a, b) => a.price - b.price);
+    const upsellItems = sortedStoreItems.slice(0,3)
+     */
+
+    let isDiscount: boolean = false
     const {cartItems} = useShoppingCart()
     let isTotalDiscount: boolean = false
     let isQuanDiscount: boolean = false
@@ -55,11 +64,11 @@ export default function Basket() {
     return (
         <aside className="block col-1">
             <h2> Cart Items </h2>
-            <Stack gap={3}>
+            <div className="cart-items">
                 {cartItems.map(item => (
                     <CartItem key={item.id} {...item} />
                 ))}
-            </Stack>
+            </div>
             <div className="total-padding">
                 {total > 0 ? (
                     <p>
