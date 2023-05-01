@@ -8,8 +8,7 @@ export interface Product {
     type: string;
     price: number;
     currency: string;
-    rebateQuantity: number;
-    rebatePercent: number;
+    isExpensive: number;
     imageUrl: string;
 }
 

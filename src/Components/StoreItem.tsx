@@ -1,8 +1,10 @@
 import {Button, Card} from "react-bootstrap"
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {Product} from "./Items";
+import React from "react";
 
 export function CheckoutItem({id, name, price, imageUrl}: Product) {
+    const {getExpensiveItem} = useShoppingCart()
     const {incrementItem} = useShoppingCart()
     return (
         <Card className="product-card">
@@ -12,8 +14,8 @@ export function CheckoutItem({id, name, price, imageUrl}: Product) {
                 height="180px"
                 style={{objectFit: "cover"}}
             />
-            <Card.Body className="card-body">
 
+            <Card.Body className={` ${getExpensiveItem(id) ? "expensive_item" : ""}`}>
                     <span className="product-card__name">{name}</span>
                     <span className="product-card__price">{price} kr.</span>
 

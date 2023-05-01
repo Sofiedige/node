@@ -13,6 +13,7 @@ type ShoppingCartContext = {
     storeItems: CartItemModel[]
     getItemUrl: (id: string) => string
     getItemName: (id: string) => string
+    getExpensiveItem: (id: string) => boolean
 }
 
 export type CartItemModel = {
@@ -124,9 +125,13 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
     }
 
+    function getExpensiveItem (id: string){
+        const curItemPrice = storeItems.find((item) => item.id == id)?.price || 0;
+        return curItemPrice >= 30;
+    }
     return (
         <ShoppingCartContext.Provider
-            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, getItemUrl, getItemName}}
+            value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, getItemUrl, getItemName, getExpensiveItem}}
         >
             {children}
         </ShoppingCartContext.Provider>
