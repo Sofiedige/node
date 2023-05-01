@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Stack} from "react-bootstrap";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
@@ -39,11 +38,11 @@ export default function Basket() {
     return (
         <aside className="block col-1">
             <h2> Cart Items </h2>
-            <Stack gap={3}>
+            <div className="cart-items">
                 {cartItems.map(item => (
                     <CartItem key={item.id} {...item} />
                 ))}
-            </Stack>
+            </div>
             <div className="total-padding">
                 {total > 0 ? (
                     <p>

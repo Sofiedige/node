@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import { Col, Row } from "react-bootstrap";
 import { CheckoutItem } from "./StoreItem";
 
 export interface Product {
