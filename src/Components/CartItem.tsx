@@ -9,13 +9,14 @@ type CartItemProps = {
 export function CartItem({ id, quantity }: CartItemProps) {
     const {removeItem, incrementItem, decrementItem, storeItems, setQuantity} = useShoppingCart();
     const [isVisible, setIsVisible] = useState(false);
+
     useEffect(() => {
         setIsVisible(true);
     }, []);
 
     const item = storeItems.find((i: CartItemModel) => i.id === id);
     if (item == null) return null;
-
+    const itemprice: number = item.price * quantity;
     return (
         <div className={`cart-item ${isVisible ? "slide-in" : ""}`}>
             <div>
@@ -47,7 +48,10 @@ export function CartItem({ id, quantity }: CartItemProps) {
                             ))}
                         </select>
                     </div>
-                    <span>{(item.price * quantity).toFixed(2)} kr.</span>
+                    {item.isRebateQuantity?(
+                        <span> {itemprice.toFixed(2)} kr.</span>) :
+                        (<span> {itemprice.toFixed(2)} kr.</span>)}
+
                     <div className="remove-btn" onClick={() => removeItem(id)}>
                         Remove
                     </div>

@@ -35,10 +35,10 @@ export default function BasketInCheckout() {
                 ))}
             </div>
             {total > 0 ? (
-                <p>
+                <p >
                     Total {total.toFixed(2)} kr.
                     {!isDiscount ? (
-                        <p>Need {(300 - total).toFixed(2)} kr. to get 10% discount</p>
+                        <p className="text">Need {(300 - total).toFixed(2)} kr. to get 10% discount</p>
                     ) : (
                         <p className="discount-message">
                             You have saved {discount.toFixed(2)} kr!

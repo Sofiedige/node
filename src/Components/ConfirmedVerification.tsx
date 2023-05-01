@@ -7,7 +7,7 @@ export default function ConfirmedVerification() {
 
     return (
         <>
-            <p>
+            <p className = "verification">
                 <BasketInCheckout/>
             </p>
             <div className="row-middle">
