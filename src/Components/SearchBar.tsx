@@ -12,7 +12,7 @@ export default function SearchBar(props: SearchBarProps) {
     };
 
     return (
-        <div style={{ display: 'flex', justifyContent: 'center' }}>
+        <div style={{display: 'flex', justifyContent: 'center'}}>
             <input
                 className={'bar'}
                 text-align={'center'}
