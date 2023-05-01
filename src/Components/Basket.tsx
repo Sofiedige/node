@@ -7,7 +7,11 @@ import {navigate} from "../App";
 
 
 export default function Basket() {
-    const {cartItems} = useShoppingCart()
+    const {cartItems, storeItems} = useShoppingCart()
+
+    const sortedStoreItems = [...storeItems].sort((a, b) => a.price - b.price);
+    const upsellItems = sortedStoreItems.slice(0,3)
+
     let isDiscount: boolean = false
     let discount: number = 0
 

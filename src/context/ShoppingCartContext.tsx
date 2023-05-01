@@ -129,6 +129,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         const curItemPrice = storeItems.find((item) => item.id == id)?.price || 0;
         return curItemPrice >= 30;
     }
+
     return (
         <ShoppingCartContext.Provider
             value={{ getItemQuantity, incrementItem, decrementItem, removeItem, cartItems, storeItems, getItemUrl, getItemName, getExpensiveItem}}
