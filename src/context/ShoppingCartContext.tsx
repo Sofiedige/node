@@ -21,6 +21,7 @@ export type CartItemModel = {
     imageUrl: string
     name: string
     price: number
+    isRebateQuantity: boolean
 }
 
 const ShoppingCartContext = createContext({} as ShoppingCartContext)
@@ -71,17 +72,33 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
         return storeItems.find((item) => item.id == id)?.price || 0;
     }
 
+    function checkQuantityRebate(item: CartItemModel) {
+        if((item.price >= 20 && item.quantity >= 5) ||
+            item.quantity >= 10){
+            item.isRebateQuantity = true;
+        }
+        else {
+            item.isRebateQuantity = false;
+        }
+    }
+
     function incrementItem(id: string) {
         setCartItems((currItems) => {
             const existingItemIndex = currItems.findIndex((item) => item.id === id);
             if (existingItemIndex !== -1) {
                 // If the item already exists in the cart, update its quantity
+                const existingItem = currItems[existingItemIndex];
+
+
                 const updatedItems = [...currItems];
                 updatedItems[existingItemIndex] = {
                     ...updatedItems[existingItemIndex],
                     quantity: updatedItems[existingItemIndex].quantity + 1,
                 };
                 localStorage.setItem("cartItems", JSON.stringify(updatedItems));
+
+                checkQuantityRebate(existingItem)
+
                 return updatedItems;
             } else {
                 // If the item doesn't exist in the cart, add it with quantity 1
@@ -91,6 +108,7 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
                     imageUrl: getItemUrl(id),
                     name: getItemName(id),
                     price: getItemPrice(id),
+                    isRebateQuantity: false,
                 };
                 const updatedItems = [...currItems, newCartItem];
                 localStorage.setItem("cartItems", JSON.stringify(updatedItems));
@@ -103,11 +121,15 @@ export function ShoppingCartProvider({ children }: ShoppingCartProviderProps) {
     function decrementItem(id: string) {
         localStorage.setItem("cartItems", JSON.stringify(cartItems.filter((item) => item.id !== id)));
         setCartItems((currItems) => {
+            // If item is only one the item is removed from cart (not used anymore)
             if (currItems.find((item) => item.id == id)?.quantity == 1) {
                 return currItems.filter((item) => item.id !== id);
+
+            // else its quantity is decremented
             } else {
                 return currItems.map((item) => {
                     if (item.id == id) {
+                        checkQuantityRebate(item)
                         return { ...item, quantity: item.quantity - 1 };
                     } else {
                         return item;

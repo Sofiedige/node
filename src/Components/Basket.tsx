@@ -1,23 +1,38 @@
 import React, {useState} from 'react'
 import {Stack} from "react-bootstrap";
-import {useShoppingCart} from "../context/ShoppingCartContext";
+import {CartItemModel, useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
 import storeItems from "../Data/ProductList.json"
 import {navigate} from "../App";
 
+function isItemQuantityDiscount(cartItem: CartItemModel) {
+    if (cartItem.price >= 20 && cartItem.quantity) {
+
+    }
+
+}
 
 export default function Basket() {
     const {cartItems} = useShoppingCart()
-    let isDiscount: boolean = false
+    let isTotalDiscount: boolean = false
+    let isQuanDiscount: boolean = false
+
     let discount: number = 0
 
     const total = cartItems.reduce((total, cartItem) => {
-        const item = storeItems.find(i => i.id === cartItem.id)
-        total = total + (item?.price || 0) * cartItem.quantity
-        isDiscount = false
+        //const item = storeItems.find(i => i.id === cartItem.id)
 
+        //calculates possible quantity discount.
+        if (cartItem.isRebateQuantity) {
+            total = total + (cartItem.price || 0) * cartItem.quantity * 0.9
+            isQuanDiscount = true
+        } else {
+            total = total + (cartItem.price || 0) * cartItem.quantity
+        }
+
+        //calculates discount for when total is over 300
         if (total >= 300) {
-            isDiscount = true
+            isTotalDiscount = true
             discount = total * 0.1
             total = total * 0.9
         }
@@ -48,7 +63,7 @@ export default function Basket() {
                 {total > 0 ? (
                     <p>
                         Total {total.toFixed(2)} kr.
-                        {!isDiscount ? (
+                        {!isTotalDiscount ? (
                             <p>
                                 Need {(300 - total).toFixed(2)} kr. to get 10% discount
                             </p>
