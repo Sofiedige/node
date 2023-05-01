@@ -1,7 +1,6 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import {useShoppingCart} from "../context/ShoppingCartContext";
 import {CartItem} from "./CartItem";
-import storeItems from "../Data/ProductList.json"
 import {navigate} from "../App";
 
 export default function Basket() {

@@ -1,7 +1,5 @@
-//import {Stack} from "react-bootstrap";
 import storeItems from "../Data/ProductList.json"
 import {CartItemInCheckout} from "./CartItemInCheckout";
-import React from "react";
 import {useShoppingCart} from "../context/ShoppingCartContext";
 
 
