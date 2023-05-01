@@ -461,3 +461,49 @@ select::-ms-expand {
   display: none;
 }
 
+.spinner {
+  width: 1em;
+  height: 1em;
+  position: relative;
+  animation: rotate 2s linear infinite;
+}
+
+.spinner:before,
+.spinner:after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  border: 0.1em solid #fff;
+  opacity: 0.8;
+}
+
+.spinner:before {
+  animation: bounce 2s linear infinite;
+}
+
+.spinner:after {
+  animation: bounce 2s linear 1s infinite;
+}
+
+@keyframes rotate {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes bounce {
+  0%,
+  100% {
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1);
+  }
+}
+
+

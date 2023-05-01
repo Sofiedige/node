@@ -6,6 +6,6 @@ import App from "../src/App";
 describe(App.name, () => {
     it("should render", () => {
         render(<App />);
-        expect(screen.getByLabelText("Products")).toBeInTheDocument();
+        expect(screen.getByText("Products")).toBeInTheDocument();
     });
 });

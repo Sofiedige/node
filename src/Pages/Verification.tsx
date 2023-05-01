@@ -1,6 +1,4 @@
 import Header from "../Components/Header";
-import Items from "../Components/Items";
-import BasketInCheckout from "../Components/BasketInCheckout";
 import {ShoppingCartProvider} from "../context/ShoppingCartContext";
 import ConfirmedVerification from "../Components/ConfirmedVerification";
 

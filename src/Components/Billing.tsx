@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import {useState} from 'react'
 import LoadingIndicator from './LoadingIndicator';
 import BasketInCheckout from "./BasketInCheckout";
 import {useShoppingCart} from "../context/ShoppingCartContext";
